@@ -32,10 +32,10 @@ namespace FlowModel.AdditionalForms
             eta_ch = new List<double>();
             t_ch = new List<double>();
             dataGridView1.Columns.Add("param_name", "param_name");
-            dataGridView1.Rows.Add(3);
-            dataGridView1.Rows[0].Cells[0].Value = "z";
-            dataGridView1.Rows[1].Cells[0].Value = "t";
-            dataGridView1.Rows[2].Cells[0].Value = "eta";
+            dataGridView1.Rows.Add(2);
+            dataGridView1.Rows[0].Cells[0].Value = "Координата канала";
+            dataGridView1.Rows[1].Cells[0].Value = "Температура";
+            dataGridView1.Rows[2].Cells[0].Value = "Вязкость";
             for (double z = 0.0; z < obj.canal.length; z += obj.step) { 
                 ae = ((obj.material.b*q_gamma + obj.canal.width * obj.material.alpha_u)/(obj.material.b*q_alpha))*(1.0 - Math.Exp(-(z* obj.material.b*q_alpha/(obj.material.ro*obj.material.c*q_ch))))+ Math.Exp(obj.material.b*(obj.material.t0 - obj.material.tr - (z*q_alpha/(obj.material.ro* obj.material.c*q_ch))));
                 t_ch.Add(Math.Round(obj.material.tr + 1.0 * Math.Log(ae) / obj.material.b,2));
@@ -57,6 +57,7 @@ namespace FlowModel.AdditionalForms
             label5.Text = q_ch.ToString();
             label6.Text = t_prod.ToString();
             label7.Text = eta_prod.ToString();
+            
         }
         static int GetDecimalDigitsCount(double number)
         {

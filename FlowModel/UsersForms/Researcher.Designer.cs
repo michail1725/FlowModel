@@ -37,27 +37,29 @@ namespace FlowModel
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.ChangeGeometry = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.ChangeU = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.ChangeMaterial = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.label8 = new System.Windows.Forms.Label();
             this.textBox7 = new System.Windows.Forms.TextBox();
-            this.ChangeMathParams = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label2 = new System.Windows.Forms.Label();
             this.StartCalc = new System.Windows.Forms.Button();
+            this.Properties = new System.Windows.Forms.Label();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.label9 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -68,10 +70,9 @@ namespace FlowModel
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.ChangeGeometry);
-            this.groupBox1.Location = new System.Drawing.Point(12, 54);
+            this.groupBox1.Location = new System.Drawing.Point(7, 266);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(235, 133);
+            this.groupBox1.Size = new System.Drawing.Size(302, 133);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Геометрические параметры канала";
@@ -83,6 +84,7 @@ namespace FlowModel
             this.textBox4.ReadOnly = true;
             this.textBox4.Size = new System.Drawing.Size(62, 20);
             this.textBox4.TabIndex = 14;
+            this.textBox4.Text = "9,5";
             // 
             // textBox3
             // 
@@ -91,6 +93,7 @@ namespace FlowModel
             this.textBox3.ReadOnly = true;
             this.textBox3.Size = new System.Drawing.Size(62, 20);
             this.textBox3.TabIndex = 13;
+            this.textBox3.Text = "0,01";
             // 
             // textBox2
             // 
@@ -99,6 +102,7 @@ namespace FlowModel
             this.textBox2.ReadOnly = true;
             this.textBox2.Size = new System.Drawing.Size(62, 20);
             this.textBox2.TabIndex = 12;
+            this.textBox2.Text = "0,25";
             // 
             // label5
             // 
@@ -127,26 +131,15 @@ namespace FlowModel
             this.label3.TabIndex = 9;
             this.label3.Text = "Ширина W (м):";
             // 
-            // ChangeGeometry
-            // 
-            this.ChangeGeometry.Location = new System.Drawing.Point(154, 104);
-            this.ChangeGeometry.Name = "ChangeGeometry";
-            this.ChangeGeometry.Size = new System.Drawing.Size(75, 23);
-            this.ChangeGeometry.TabIndex = 0;
-            this.ChangeGeometry.Text = "Изменить";
-            this.ChangeGeometry.UseVisualStyleBackColor = true;
-            this.ChangeGeometry.Click += new System.EventHandler(this.ChangeGeometry_Click);
-            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.textBox6);
             this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.Controls.Add(this.textBox5);
             this.groupBox2.Controls.Add(this.label6);
-            this.groupBox2.Controls.Add(this.ChangeU);
-            this.groupBox2.Location = new System.Drawing.Point(11, 193);
+            this.groupBox2.Location = new System.Drawing.Point(6, 405);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(236, 122);
+            this.groupBox2.Size = new System.Drawing.Size(303, 122);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Варьируемые параметры";
@@ -158,6 +151,7 @@ namespace FlowModel
             this.textBox6.ReadOnly = true;
             this.textBox6.Size = new System.Drawing.Size(77, 20);
             this.textBox6.TabIndex = 5;
+            this.textBox6.Text = "1,5";
             // 
             // label7
             // 
@@ -175,6 +169,7 @@ namespace FlowModel
             this.textBox5.ReadOnly = true;
             this.textBox5.Size = new System.Drawing.Size(78, 20);
             this.textBox5.TabIndex = 3;
+            this.textBox5.Text = "150";
             // 
             // label6
             // 
@@ -185,52 +180,13 @@ namespace FlowModel
             this.label6.TabIndex = 2;
             this.label6.Text = "Температура крышки Tu (°C):";
             // 
-            // ChangeU
-            // 
-            this.ChangeU.Location = new System.Drawing.Point(156, 93);
-            this.ChangeU.Name = "ChangeU";
-            this.ChangeU.Size = new System.Drawing.Size(75, 23);
-            this.ChangeU.TabIndex = 1;
-            this.ChangeU.Text = "Изменить";
-            this.ChangeU.UseVisualStyleBackColor = true;
-            this.ChangeU.Click += new System.EventHandler(this.ChangeU_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(87, 13);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Тип материала:";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(12, 26);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(149, 20);
-            this.textBox1.TabIndex = 3;
-            this.textBox1.Text = "Не задан";
-            // 
-            // ChangeMaterial
-            // 
-            this.ChangeMaterial.Location = new System.Drawing.Point(167, 24);
-            this.ChangeMaterial.Name = "ChangeMaterial";
-            this.ChangeMaterial.Size = new System.Drawing.Size(75, 23);
-            this.ChangeMaterial.TabIndex = 4;
-            this.ChangeMaterial.Text = "Изменить";
-            this.ChangeMaterial.UseVisualStyleBackColor = true;
-            this.ChangeMaterial.Click += new System.EventHandler(this.ChangeMaterial_Click);
-            // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.label8);
             this.groupBox3.Controls.Add(this.textBox7);
-            this.groupBox3.Controls.Add(this.ChangeMathParams);
-            this.groupBox3.Location = new System.Drawing.Point(11, 321);
+            this.groupBox3.Location = new System.Drawing.Point(6, 533);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(236, 94);
+            this.groupBox3.Size = new System.Drawing.Size(303, 72);
             this.groupBox3.TabIndex = 5;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Параметры методов решения";
@@ -240,9 +196,9 @@ namespace FlowModel
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(7, 20);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(117, 13);
+            this.label8.Size = new System.Drawing.Size(134, 13);
             this.label8.TabIndex = 11;
-            this.label8.Text = "Шаг по длине канала:";
+            this.label8.Text = "Шаг по длине канала (м):";
             // 
             // textBox7
             // 
@@ -251,25 +207,16 @@ namespace FlowModel
             this.textBox7.ReadOnly = true;
             this.textBox7.Size = new System.Drawing.Size(78, 20);
             this.textBox7.TabIndex = 10;
-            // 
-            // ChangeMathParams
-            // 
-            this.ChangeMathParams.Location = new System.Drawing.Point(155, 65);
-            this.ChangeMathParams.Name = "ChangeMathParams";
-            this.ChangeMathParams.Size = new System.Drawing.Size(75, 23);
-            this.ChangeMathParams.TabIndex = 9;
-            this.ChangeMathParams.Text = "Изменить";
-            this.ChangeMathParams.UseVisualStyleBackColor = true;
-            this.ChangeMathParams.Click += new System.EventHandler(this.ChangeMathParams_Click);
+            this.textBox7.Text = "0,1";
             // 
             // pictureBox1
             // 
             this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox1.InitialImage = null;
-            this.pictureBox1.Location = new System.Drawing.Point(330, 26);
+            this.pictureBox1.Location = new System.Drawing.Point(330, 30);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(404, 343);
+            this.pictureBox1.Size = new System.Drawing.Size(675, 575);
             this.pictureBox1.TabIndex = 6;
             this.pictureBox1.TabStop = false;
             // 
@@ -284,7 +231,7 @@ namespace FlowModel
             // 
             // StartCalc
             // 
-            this.StartCalc.Location = new System.Drawing.Point(569, 375);
+            this.StartCalc.Location = new System.Drawing.Point(840, 611);
             this.StartCalc.Name = "StartCalc";
             this.StartCalc.Size = new System.Drawing.Size(165, 34);
             this.StartCalc.TabIndex = 8;
@@ -292,19 +239,84 @@ namespace FlowModel
             this.StartCalc.UseVisualStyleBackColor = true;
             this.StartCalc.Click += new System.EventHandler(this.StartCalc_Click);
             // 
+            // Properties
+            // 
+            this.Properties.AutoSize = true;
+            this.Properties.Location = new System.Drawing.Point(7, 52);
+            this.Properties.Name = "Properties";
+            this.Properties.Size = new System.Drawing.Size(191, 13);
+            this.Properties.TabIndex = 12;
+            this.Properties.Text = "Полный список свойств материала:";
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column1,
+            this.Column2,
+            this.Column3});
+            this.dataGridView1.Location = new System.Drawing.Point(6, 68);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowHeadersVisible = false;
+            this.dataGridView1.Size = new System.Drawing.Size(303, 192);
+            this.dataGridView1.TabIndex = 11;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(7, 9);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(118, 13);
+            this.label9.TabIndex = 10;
+            this.label9.Text = "Название материала:";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "Поливинилхлорид"});
+            this.comboBox1.Location = new System.Drawing.Point(6, 28);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(146, 21);
+            this.comboBox1.TabIndex = 9;
+            // 
+            // Column1
+            // 
+            this.Column1.Frozen = true;
+            this.Column1.HeaderText = "Название параметра";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            // 
+            // Column2
+            // 
+            this.Column2.Frozen = true;
+            this.Column2.HeaderText = "Единицы измерения";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            this.Column2.Width = 70;
+            // 
+            // Column3
+            // 
+            this.Column3.Frozen = true;
+            this.Column3.HeaderText = "Значение";
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightBlue;
-            this.ClientSize = new System.Drawing.Size(753, 425);
+            this.ClientSize = new System.Drawing.Size(1013, 649);
+            this.Controls.Add(this.Properties);
+            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.StartCalc);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.ChangeMaterial);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Name = "Form1";
@@ -316,6 +328,7 @@ namespace FlowModel
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -330,23 +343,24 @@ namespace FlowModel
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button ChangeGeometry;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.TextBox textBox6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Button ChangeU;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button ChangeMaterial;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.Button ChangeMathParams;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button StartCalc;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.Label Properties;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
     }
 }
 

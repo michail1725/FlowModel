@@ -9,3 +9,13 @@ C:\Users\Михаил\source\repos\FlowModel\FlowModel\obj\Debug\FlowModel.cspro
 C:\Users\Михаил\source\repos\FlowModel\FlowModel\obj\Debug\FlowModel.csproj.CoreCompileInputs.cache
 C:\Users\Михаил\source\repos\FlowModel\FlowModel\obj\Debug\FlowModel.exe
 C:\Users\Михаил\source\repos\FlowModel\FlowModel\obj\Debug\FlowModel.pdb
+E:\Git\Repos\FlowModel\FlowModel\bin\Debug\FlowModel.exe.config
+E:\Git\Repos\FlowModel\FlowModel\bin\Debug\FlowModel.exe
+E:\Git\Repos\FlowModel\FlowModel\bin\Debug\FlowModel.pdb
+E:\Git\Repos\FlowModel\FlowModel\obj\Debug\FlowModel.csprojAssemblyReference.cache
+E:\Git\Repos\FlowModel\FlowModel\obj\Debug\FlowModel.AdditionalForms.SimulationOverview.resources
+E:\Git\Repos\FlowModel\FlowModel\obj\Debug\FlowModel.Form1.resources
+E:\Git\Repos\FlowModel\FlowModel\obj\Debug\FlowModel.Properties.Resources.resources
+E:\Git\Repos\FlowModel\FlowModel\obj\Debug\FlowModel.csproj.GenerateResource.cache
+E:\Git\Repos\FlowModel\FlowModel\obj\Debug\FlowModel.exe
+E:\Git\Repos\FlowModel\FlowModel\obj\Debug\FlowModel.pdb

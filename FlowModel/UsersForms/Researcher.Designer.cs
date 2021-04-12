@@ -72,7 +72,7 @@ namespace FlowModel
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Location = new System.Drawing.Point(7, 266);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(302, 133);
+            this.groupBox1.Size = new System.Drawing.Size(317, 133);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Геометрические параметры канала";
@@ -81,7 +81,6 @@ namespace FlowModel
             // 
             this.textBox4.Location = new System.Drawing.Point(9, 108);
             this.textBox4.Name = "textBox4";
-            this.textBox4.ReadOnly = true;
             this.textBox4.Size = new System.Drawing.Size(62, 20);
             this.textBox4.TabIndex = 14;
             this.textBox4.Text = "9,5";
@@ -90,7 +89,6 @@ namespace FlowModel
             // 
             this.textBox3.Location = new System.Drawing.Point(9, 69);
             this.textBox3.Name = "textBox3";
-            this.textBox3.ReadOnly = true;
             this.textBox3.Size = new System.Drawing.Size(62, 20);
             this.textBox3.TabIndex = 13;
             this.textBox3.Text = "0,01";
@@ -99,7 +97,6 @@ namespace FlowModel
             // 
             this.textBox2.Location = new System.Drawing.Point(9, 30);
             this.textBox2.Name = "textBox2";
-            this.textBox2.ReadOnly = true;
             this.textBox2.Size = new System.Drawing.Size(62, 20);
             this.textBox2.TabIndex = 12;
             this.textBox2.Text = "0,25";
@@ -109,27 +106,27 @@ namespace FlowModel
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(6, 92);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(69, 13);
+            this.label5.Size = new System.Drawing.Size(60, 13);
             this.label5.TabIndex = 11;
-            this.label5.Text = "Длина L (м):";
+            this.label5.Text = "Длина (м):";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(6, 53);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(79, 13);
+            this.label4.Size = new System.Drawing.Size(68, 13);
             this.label4.TabIndex = 10;
-            this.label4.Text = "Глубина H (м):";
+            this.label4.Text = "Глубина (м):";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(6, 16);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(80, 13);
+            this.label3.Size = new System.Drawing.Size(66, 13);
             this.label3.TabIndex = 9;
-            this.label3.Text = "Ширина W (м):";
+            this.label3.Text = "Ширина (м):";
             // 
             // groupBox2
             // 
@@ -139,7 +136,7 @@ namespace FlowModel
             this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Location = new System.Drawing.Point(6, 405);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(303, 122);
+            this.groupBox2.Size = new System.Drawing.Size(318, 122);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Варьируемые параметры";
@@ -148,7 +145,6 @@ namespace FlowModel
             // 
             this.textBox6.Location = new System.Drawing.Point(11, 80);
             this.textBox6.Name = "textBox6";
-            this.textBox6.ReadOnly = true;
             this.textBox6.Size = new System.Drawing.Size(77, 20);
             this.textBox6.TabIndex = 5;
             this.textBox6.Text = "1,5";
@@ -158,15 +154,14 @@ namespace FlowModel
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(7, 64);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(145, 13);
+            this.label7.Size = new System.Drawing.Size(129, 13);
             this.label7.TabIndex = 4;
-            this.label7.Text = "Скорость крышки Vu (м/с):";
+            this.label7.Text = "Скорость крышки (м/с):";
             // 
             // textBox5
             // 
             this.textBox5.Location = new System.Drawing.Point(10, 37);
             this.textBox5.Name = "textBox5";
-            this.textBox5.ReadOnly = true;
             this.textBox5.Size = new System.Drawing.Size(78, 20);
             this.textBox5.TabIndex = 3;
             this.textBox5.Text = "150";
@@ -176,9 +171,9 @@ namespace FlowModel
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(7, 21);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(156, 13);
+            this.label6.Size = new System.Drawing.Size(140, 13);
             this.label6.TabIndex = 2;
-            this.label6.Text = "Температура крышки Tu (°C):";
+            this.label6.Text = "Температура крышки (°C):";
             // 
             // groupBox3
             // 
@@ -186,7 +181,7 @@ namespace FlowModel
             this.groupBox3.Controls.Add(this.textBox7);
             this.groupBox3.Location = new System.Drawing.Point(6, 533);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(303, 72);
+            this.groupBox3.Size = new System.Drawing.Size(318, 72);
             this.groupBox3.TabIndex = 5;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Параметры методов решения";
@@ -204,7 +199,6 @@ namespace FlowModel
             // 
             this.textBox7.Location = new System.Drawing.Point(10, 36);
             this.textBox7.Name = "textBox7";
-            this.textBox7.ReadOnly = true;
             this.textBox7.Size = new System.Drawing.Size(78, 20);
             this.textBox7.TabIndex = 10;
             this.textBox7.Text = "0,1";
@@ -259,7 +253,7 @@ namespace FlowModel
             this.dataGridView1.Location = new System.Drawing.Point(6, 68);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.Size = new System.Drawing.Size(303, 192);
+            this.dataGridView1.Size = new System.Drawing.Size(318, 192);
             this.dataGridView1.TabIndex = 11;
             // 
             // label9
@@ -267,9 +261,9 @@ namespace FlowModel
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(7, 9);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(118, 13);
+            this.label9.Size = new System.Drawing.Size(87, 13);
             this.label9.TabIndex = 10;
-            this.label9.Text = "Название материала:";
+            this.label9.Text = "Тип материала:";
             // 
             // comboBox1
             // 
@@ -287,6 +281,7 @@ namespace FlowModel
             this.Column1.HeaderText = "Название параметра";
             this.Column1.Name = "Column1";
             this.Column1.ReadOnly = true;
+            this.Column1.Width = 180;
             // 
             // Column2
             // 
@@ -301,7 +296,7 @@ namespace FlowModel
             this.Column3.Frozen = true;
             this.Column3.HeaderText = "Значение";
             this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
+            this.Column3.Width = 60;
             // 
             // Form1
             // 
@@ -319,7 +314,10 @@ namespace FlowModel
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
+            this.MaximumSize = new System.Drawing.Size(1029, 688);
+            this.MinimumSize = new System.Drawing.Size(1029, 688);
             this.Name = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FlowModel";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

@@ -30,6 +30,32 @@ namespace FlowModel
 
       private void StartCalc_Click(object sender, EventArgs e)
       {
+         try
+         {
+            double val;
+            for (int i = 1; i < 8; i++)
+            {
+               if (Double.TryParse(dataGridView1[2, i].Value.ToString(), out val))
+               {
+                  double tmp = Convert.ToDouble(dataGridView1[2, i].Value.ToString());
+                  if (tmp < 0)
+                  {
+                     throw new Exception("Вы ввели отрицательное число!\nПроверьте столбец значений на присутствие таковых!");
+                  }
+               }
+               else
+               {
+                  throw new Exception("Вы ввели текст!\nПроверьте столбец значений на присутствие текста!");
+               }
+            }
+            StartCalc.Enabled = true;
+         }
+         catch (Exception ex)
+         {
+            MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            return;
+         }
+
          SimulationObject.material = new Material();
          SimulationObject.material.alpha_u = Convert.ToDouble(dataGridView1.Rows[7].Cells[2].Value);
          SimulationObject.material.b = Convert.ToDouble(dataGridView1.Rows[5].Cells[2].Value);
@@ -54,42 +80,13 @@ namespace FlowModel
 
 
       // область проверок данных
-      private void CheckDataGrid_Click(object sender, EventArgs e)
-      {
-         try
-         {
-            double val;
-            for (int i = 1; i < 8; i++)
-            {
-               if (Double.TryParse(dataGridView1[2, i].Value.ToString(), out val))
-               {
-                  double tmp = Convert.ToDouble(dataGridView1[2, i].Value.ToString());
-                  if (tmp < 0)
-                  {
-                     throw new Exception("Вы ввели отрицательное число!\nПроверьте столбец значений на присутствие таковых!");
-                  }
-               }
-               else
-               {
-                  throw new Exception("Вы ввели текст!\nПроверьте столбец значений на присутствие текста!");
-               }
-            }
-            
-
-            StartCalc.Enabled = true;
-         }
-         catch (Exception ex)
-         {
-            MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-         }
-      }
 
       private void widthChanged(object sender, EventArgs e)
       {
          try
          {
             Width.BackColor = Color.White;
-            
+            StartCalc.Enabled = true;
             double val;
 
 
@@ -127,7 +124,7 @@ namespace FlowModel
          {
             Depth.BackColor = Color.White;
             double val;
-
+            StartCalc.Enabled = true;
 
             if (Double.TryParse(Depth.Text, out val))
             {
@@ -163,7 +160,7 @@ namespace FlowModel
          {
             Lenght.BackColor = Color.White;
             double val;
-
+            StartCalc.Enabled = true;
 
             if (Double.TryParse(Lenght.Text, out val))
             {
@@ -239,7 +236,7 @@ namespace FlowModel
          {
             CapSpeed.BackColor = Color.White;
             double val;
-
+            StartCalc.Enabled = true;
 
             if (Double.TryParse(CapSpeed.Text, out val))
             {
@@ -276,7 +273,7 @@ namespace FlowModel
          {
             Step.BackColor = Color.White;
             double val;
-
+            StartCalc.Enabled = true;
 
             if (Double.TryParse(Step.Text, out val))
             {

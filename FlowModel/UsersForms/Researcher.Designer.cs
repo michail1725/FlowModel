@@ -50,12 +50,11 @@ namespace FlowModel
          this.StartCalc = new System.Windows.Forms.Button();
          this.Properties = new System.Windows.Forms.Label();
          this.dataGridView1 = new System.Windows.Forms.DataGridView();
-         this.label9 = new System.Windows.Forms.Label();
-         this.MaterialName = new System.Windows.Forms.ComboBox();
          this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
          this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
          this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-         this.CheckDataGrid = new System.Windows.Forms.Button();
+         this.label9 = new System.Windows.Forms.Label();
+         this.MaterialName = new System.Windows.Forms.ComboBox();
          this.groupBox1.SuspendLayout();
          this.groupBox2.SuspendLayout();
          this.groupBox3.SuspendLayout();
@@ -232,7 +231,6 @@ namespace FlowModel
          // 
          // StartCalc
          // 
-         this.StartCalc.Enabled = false;
          this.StartCalc.Location = new System.Drawing.Point(840, 611);
          this.StartCalc.Name = "StartCalc";
          this.StartCalc.Size = new System.Drawing.Size(165, 34);
@@ -264,25 +262,6 @@ namespace FlowModel
          this.dataGridView1.Size = new System.Drawing.Size(318, 256);
          this.dataGridView1.TabIndex = 11;
          // 
-         // label9
-         // 
-         this.label9.AutoSize = true;
-         this.label9.Location = new System.Drawing.Point(7, 9);
-         this.label9.Name = "label9";
-         this.label9.Size = new System.Drawing.Size(87, 13);
-         this.label9.TabIndex = 10;
-         this.label9.Text = "Тип материала:";
-         // 
-         // MaterialName
-         // 
-         this.MaterialName.FormattingEnabled = true;
-         this.MaterialName.Items.AddRange(new object[] {
-            "Поливинилхлорид"});
-         this.MaterialName.Location = new System.Drawing.Point(6, 28);
-         this.MaterialName.Name = "MaterialName";
-         this.MaterialName.Size = new System.Drawing.Size(146, 21);
-         this.MaterialName.TabIndex = 9;
-         // 
          // Column1
          // 
          this.Column1.Frozen = true;
@@ -309,15 +288,24 @@ namespace FlowModel
          this.Column3.Resizable = System.Windows.Forms.DataGridViewTriState.False;
          this.Column3.Width = 60;
          // 
-         // CheckDataGrid
+         // label9
          // 
-         this.CheckDataGrid.Location = new System.Drawing.Point(669, 611);
-         this.CheckDataGrid.Name = "CheckDataGrid";
-         this.CheckDataGrid.Size = new System.Drawing.Size(165, 34);
-         this.CheckDataGrid.TabIndex = 13;
-         this.CheckDataGrid.Text = "Проверить данные в таблице";
-         this.CheckDataGrid.UseVisualStyleBackColor = true;
-         this.CheckDataGrid.Click += new System.EventHandler(this.CheckDataGrid_Click);
+         this.label9.AutoSize = true;
+         this.label9.Location = new System.Drawing.Point(7, 9);
+         this.label9.Name = "label9";
+         this.label9.Size = new System.Drawing.Size(87, 13);
+         this.label9.TabIndex = 10;
+         this.label9.Text = "Тип материала:";
+         // 
+         // MaterialName
+         // 
+         this.MaterialName.FormattingEnabled = true;
+         this.MaterialName.Items.AddRange(new object[] {
+            "Поливинилхлорид"});
+         this.MaterialName.Location = new System.Drawing.Point(6, 28);
+         this.MaterialName.Name = "MaterialName";
+         this.MaterialName.Size = new System.Drawing.Size(146, 21);
+         this.MaterialName.TabIndex = 9;
          // 
          // Form1
          // 
@@ -325,7 +313,6 @@ namespace FlowModel
          this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
          this.BackColor = System.Drawing.Color.LightBlue;
          this.ClientSize = new System.Drawing.Size(1013, 649);
-         this.Controls.Add(this.CheckDataGrid);
          this.Controls.Add(this.Properties);
          this.Controls.Add(this.dataGridView1);
          this.Controls.Add(this.label9);
@@ -381,7 +368,6 @@ namespace FlowModel
       private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
       private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
       private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-      private System.Windows.Forms.Button CheckDataGrid;
    }
 }
 

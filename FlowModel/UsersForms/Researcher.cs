@@ -26,6 +26,7 @@ namespace FlowModel
          dataGridView1.Rows.Add("Коэффициент теплоотдачи крышки", "Вт/(м2·°С)", "400");
       }
 
+      
 
       private void StartCalc_Click(object sender, EventArgs e)
       {
@@ -53,14 +54,42 @@ namespace FlowModel
 
 
       // область проверок данных
+      private void CheckDataGrid_Click(object sender, EventArgs e)
+      {
+         try
+         {
+            double val;
+            for (int i = 1; i < 8; i++)
+            {
+               if (Double.TryParse(dataGridView1[2, i].Value.ToString(), out val))
+               {
+                  double tmp = Convert.ToDouble(dataGridView1[2, i].Value.ToString());
+                  if (tmp < 0)
+                  {
+                     throw new Exception("Вы ввели отрицательное число!\nПроверьте столбец значений на присутствие таковых!");
+                  }
+               }
+               else
+               {
+                  throw new Exception("Вы ввели текст!\nПроверьте столбец значений на присутствие текста!");
+               }
+            }
+            
 
+            StartCalc.Enabled = true;
+         }
+         catch (Exception ex)
+         {
+            MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+         }
+      }
 
       private void widthChanged(object sender, EventArgs e)
       {
          try
          {
             Width.BackColor = Color.White;
-            StartCalc.Enabled = true;
+            
             double val;
 
 
@@ -97,7 +126,6 @@ namespace FlowModel
          try
          {
             Depth.BackColor = Color.White;
-            StartCalc.Enabled = true;
             double val;
 
 
@@ -134,7 +162,6 @@ namespace FlowModel
          try
          {
             Lenght.BackColor = Color.White;
-            StartCalc.Enabled = true;
             double val;
 
 
@@ -171,7 +198,6 @@ namespace FlowModel
          try
          {
             CapTemperature.BackColor = Color.White;
-            StartCalc.Enabled = true;
             double val;
 
 
@@ -212,7 +238,6 @@ namespace FlowModel
          try
          {
             CapSpeed.BackColor = Color.White;
-            StartCalc.Enabled = true;
             double val;
 
 
@@ -250,7 +275,6 @@ namespace FlowModel
          try
          {
             Step.BackColor = Color.White;
-            StartCalc.Enabled = true;
             double val;
 
 

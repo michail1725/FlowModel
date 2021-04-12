@@ -55,6 +55,7 @@ namespace FlowModel
          this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
          this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
          this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+         this.CheckDataGrid = new System.Windows.Forms.Button();
          this.groupBox1.SuspendLayout();
          this.groupBox2.SuspendLayout();
          this.groupBox3.SuspendLayout();
@@ -70,16 +71,16 @@ namespace FlowModel
          this.groupBox1.Controls.Add(this.label5);
          this.groupBox1.Controls.Add(this.label4);
          this.groupBox1.Controls.Add(this.label3);
-         this.groupBox1.Location = new System.Drawing.Point(7, 266);
+         this.groupBox1.Location = new System.Drawing.Point(7, 330);
          this.groupBox1.Name = "groupBox1";
-         this.groupBox1.Size = new System.Drawing.Size(317, 133);
+         this.groupBox1.Size = new System.Drawing.Size(317, 69);
          this.groupBox1.TabIndex = 0;
          this.groupBox1.TabStop = false;
          this.groupBox1.Text = "Геометрические параметры канала";
          // 
          // Lenght
          // 
-         this.Lenght.Location = new System.Drawing.Point(9, 108);
+         this.Lenght.Location = new System.Drawing.Point(141, 40);
          this.Lenght.Name = "Lenght";
          this.Lenght.Size = new System.Drawing.Size(62, 20);
          this.Lenght.TabIndex = 14;
@@ -88,7 +89,7 @@ namespace FlowModel
          // 
          // Depth
          // 
-         this.Depth.Location = new System.Drawing.Point(9, 69);
+         this.Depth.Location = new System.Drawing.Point(73, 40);
          this.Depth.Name = "Depth";
          this.Depth.Size = new System.Drawing.Size(62, 20);
          this.Depth.TabIndex = 13;
@@ -97,7 +98,7 @@ namespace FlowModel
          // 
          // Width
          // 
-         this.Width.Location = new System.Drawing.Point(9, 30);
+         this.Width.Location = new System.Drawing.Point(5, 40);
          this.Width.Name = "Width";
          this.Width.Size = new System.Drawing.Size(62, 20);
          this.Width.TabIndex = 12;
@@ -107,7 +108,7 @@ namespace FlowModel
          // label5
          // 
          this.label5.AutoSize = true;
-         this.label5.Location = new System.Drawing.Point(6, 92);
+         this.label5.Location = new System.Drawing.Point(138, 24);
          this.label5.Name = "label5";
          this.label5.Size = new System.Drawing.Size(60, 13);
          this.label5.TabIndex = 11;
@@ -116,7 +117,7 @@ namespace FlowModel
          // label4
          // 
          this.label4.AutoSize = true;
-         this.label4.Location = new System.Drawing.Point(6, 53);
+         this.label4.Location = new System.Drawing.Point(70, 24);
          this.label4.Name = "label4";
          this.label4.Size = new System.Drawing.Size(68, 13);
          this.label4.TabIndex = 10;
@@ -125,7 +126,7 @@ namespace FlowModel
          // label3
          // 
          this.label3.AutoSize = true;
-         this.label3.Location = new System.Drawing.Point(6, 16);
+         this.label3.Location = new System.Drawing.Point(2, 26);
          this.label3.Name = "label3";
          this.label3.Size = new System.Drawing.Size(66, 13);
          this.label3.TabIndex = 9;
@@ -139,14 +140,14 @@ namespace FlowModel
          this.groupBox2.Controls.Add(this.label6);
          this.groupBox2.Location = new System.Drawing.Point(6, 405);
          this.groupBox2.Name = "groupBox2";
-         this.groupBox2.Size = new System.Drawing.Size(318, 122);
+         this.groupBox2.Size = new System.Drawing.Size(318, 74);
          this.groupBox2.TabIndex = 1;
          this.groupBox2.TabStop = false;
          this.groupBox2.Text = "Варьируемые параметры";
          // 
          // CapSpeed
          // 
-         this.CapSpeed.Location = new System.Drawing.Point(11, 80);
+         this.CapSpeed.Location = new System.Drawing.Point(157, 37);
          this.CapSpeed.Name = "CapSpeed";
          this.CapSpeed.Size = new System.Drawing.Size(77, 20);
          this.CapSpeed.TabIndex = 5;
@@ -156,7 +157,7 @@ namespace FlowModel
          // label7
          // 
          this.label7.AutoSize = true;
-         this.label7.Location = new System.Drawing.Point(7, 64);
+         this.label7.Location = new System.Drawing.Point(153, 21);
          this.label7.Name = "label7";
          this.label7.Size = new System.Drawing.Size(129, 13);
          this.label7.TabIndex = 4;
@@ -184,7 +185,7 @@ namespace FlowModel
          // 
          this.groupBox3.Controls.Add(this.label8);
          this.groupBox3.Controls.Add(this.Step);
-         this.groupBox3.Location = new System.Drawing.Point(6, 533);
+         this.groupBox3.Location = new System.Drawing.Point(6, 485);
          this.groupBox3.Name = "groupBox3";
          this.groupBox3.Size = new System.Drawing.Size(318, 72);
          this.groupBox3.TabIndex = 5;
@@ -231,6 +232,7 @@ namespace FlowModel
          // 
          // StartCalc
          // 
+         this.StartCalc.Enabled = false;
          this.StartCalc.Location = new System.Drawing.Point(840, 611);
          this.StartCalc.Name = "StartCalc";
          this.StartCalc.Size = new System.Drawing.Size(165, 34);
@@ -259,7 +261,7 @@ namespace FlowModel
          this.dataGridView1.Location = new System.Drawing.Point(6, 68);
          this.dataGridView1.Name = "dataGridView1";
          this.dataGridView1.RowHeadersVisible = false;
-         this.dataGridView1.Size = new System.Drawing.Size(318, 192);
+         this.dataGridView1.Size = new System.Drawing.Size(318, 256);
          this.dataGridView1.TabIndex = 11;
          // 
          // label9
@@ -287,6 +289,7 @@ namespace FlowModel
          this.Column1.HeaderText = "Название параметра";
          this.Column1.Name = "Column1";
          this.Column1.ReadOnly = true;
+         this.Column1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
          this.Column1.Width = 180;
          // 
          // Column2
@@ -295,6 +298,7 @@ namespace FlowModel
          this.Column2.HeaderText = "Единица измерения";
          this.Column2.Name = "Column2";
          this.Column2.ReadOnly = true;
+         this.Column2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
          this.Column2.Width = 70;
          // 
          // Column3
@@ -302,7 +306,18 @@ namespace FlowModel
          this.Column3.Frozen = true;
          this.Column3.HeaderText = "Значение";
          this.Column3.Name = "Column3";
+         this.Column3.Resizable = System.Windows.Forms.DataGridViewTriState.False;
          this.Column3.Width = 60;
+         // 
+         // CheckDataGrid
+         // 
+         this.CheckDataGrid.Location = new System.Drawing.Point(669, 611);
+         this.CheckDataGrid.Name = "CheckDataGrid";
+         this.CheckDataGrid.Size = new System.Drawing.Size(165, 34);
+         this.CheckDataGrid.TabIndex = 13;
+         this.CheckDataGrid.Text = "Проверить данные в таблице";
+         this.CheckDataGrid.UseVisualStyleBackColor = true;
+         this.CheckDataGrid.Click += new System.EventHandler(this.CheckDataGrid_Click);
          // 
          // Form1
          // 
@@ -310,6 +325,7 @@ namespace FlowModel
          this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
          this.BackColor = System.Drawing.Color.LightBlue;
          this.ClientSize = new System.Drawing.Size(1013, 649);
+         this.Controls.Add(this.CheckDataGrid);
          this.Controls.Add(this.Properties);
          this.Controls.Add(this.dataGridView1);
          this.Controls.Add(this.label9);
@@ -362,9 +378,10 @@ namespace FlowModel
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.ComboBox MaterialName;
-    private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-    private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-    private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-  }
+      private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+      private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+      private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+      private System.Windows.Forms.Button CheckDataGrid;
+   }
 }
 

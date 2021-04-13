@@ -8,9 +8,7 @@ namespace FlowModel
 {
    public partial class Form1 : Form
    {
-      public double t0, b, tr, n, alpha_u, ro, c, mu0;
 
-      
 
       public Form1()
       {

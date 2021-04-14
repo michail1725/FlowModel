@@ -23,9 +23,8 @@ namespace FlowModel.AdditionalForms
         {
             InitializeComponent();
             Simulation();
-            chart1.ChartAreas[0].AxisX.ScaleView.Zoomable = true;
-            chart1.ChartAreas[0].AxisY.ScaleView.Zoomable = true;
-            chart1.MouseWheel += chart1_MouseWheel;
+            label13.AutoSize = false;
+            label13.Paint += Label13_Paint;
         }
 
         private void eta_chart_Click(object sender, EventArgs e)
@@ -34,6 +33,7 @@ namespace FlowModel.AdditionalForms
             chart1.Series[1].Enabled = true;
             chart1.ChartAreas[0].AxisY.Minimum = eta_ch[eta_ch.Count - 1] - 10;
             chart1.ChartAreas[0].AxisY.Maximum = eta_ch[0] + 10;
+            label13.Text = "Вязкость";
         }
 
         private void temp_chart_Click(object sender, EventArgs e)
@@ -42,27 +42,10 @@ namespace FlowModel.AdditionalForms
             chart1.Series[0].Enabled = true;
             chart1.ChartAreas[0].AxisY.Minimum = t_ch[0] - 10;
             chart1.ChartAreas[0].AxisY.Maximum = t_ch[t_ch.Count - 1] + 10;
+            label13.Text = "Температура";
         }
 
-        private void all_chart_Click(object sender, EventArgs e)
-        {
-            chart1.Series[1].Enabled = true;
-            chart1.Series[0].Enabled = true;
-            if (t_ch[0] < eta_ch[eta_ch.Count - 1])
-            {
-                chart1.ChartAreas[0].AxisY.Minimum = t_ch[0] - 10;
-            }
-            else {
-                chart1.ChartAreas[0].AxisY.Minimum = eta_ch[eta_ch.Count - 1] - 10;
-            }
-            if (t_ch[t_ch.Count - 1] < eta_ch[0])
-            {
-                chart1.ChartAreas[0].AxisY.Maximum = eta_ch[0] + 10;
-            }
-            else {
-                chart1.ChartAreas[0].AxisY.Maximum = t_ch[0] + 10;
-            }
-        }
+
 
         private void ViewCoordinates(object sender, System.Windows.Forms.DataVisualization.Charting.ToolTipEventArgs e)
         {
@@ -104,7 +87,7 @@ namespace FlowModel.AdditionalForms
             t_ch = new List<double>();
             dataGridView1.Columns.Add("param_name", "param_name");
             dataGridView1.Rows.Add(2);
-            dataGridView1.Rows[0].Cells[0].Value = "Координата канала";
+            dataGridView1.Rows[0].Cells[0].Value = "Координата по длине канала";
             dataGridView1.Rows[1].Cells[0].Value = "Температура";
             dataGridView1.Rows[2].Cells[0].Value = "Вязкость";
             for (double z = 0.0; Math.Round(z,GetDecimalDigitsCount(obj.step)) < obj.canal.length; z += obj.step) { 
@@ -151,12 +134,20 @@ namespace FlowModel.AdditionalForms
                 chart1.ChartAreas[0].AxisY.Maximum = t_ch[0] + 10;
             }
             label11.Text = stopwatch.ElapsedMilliseconds.ToString() + " мс";
+            chart1.Series[0].Enabled = false;
+            chart1.Series[1].Enabled = true;
+            chart1.ChartAreas[0].AxisY.Minimum = eta_ch[eta_ch.Count - 1] - 10;
+            chart1.ChartAreas[0].AxisY.Maximum = eta_ch[0] + 10;
+            label13.Text = "Вязкость";
         }
         static int GetDecimalDigitsCount(double number)
         {
             string[] str = number.ToString(new System.Globalization.NumberFormatInfo() { NumberDecimalSeparator = "." }).Split('.');
             return str.Length == 2 ? str[1].Length : 0;
         }
+
+        
+
         private void chart1_MouseWheel(object sender, MouseEventArgs e)
         {
             var chart = (Chart)sender;
@@ -187,6 +178,16 @@ namespace FlowModel.AdditionalForms
                 }
             }
             catch { }
+        }
+        private void Label13_Paint(object sender, PaintEventArgs e)
+        {
+            e.Graphics.Clear(Color.White);
+            e.Graphics.RotateTransform(-90);
+            SizeF textSize = e.Graphics.MeasureString(label13.Text, label13.Font);
+            label13.Width = (int)textSize.Height + 2;
+            label13.Height = (int)textSize.Width + 2;
+            e.Graphics.TranslateTransform(-label13.Height / 2, label13.Width / 2);
+            e.Graphics.DrawString(label13.Text, label13.Font, Brushes.Black, -(textSize.Width / 2), -(textSize.Height / 2));
         }
     }
     

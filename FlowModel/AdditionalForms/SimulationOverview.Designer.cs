@@ -29,15 +29,15 @@ namespace FlowModel.AdditionalForms
         /// </summary>
         private void InitializeComponent()
         {
-         System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-         System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-         System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-         System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-         System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+         System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+         System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+         System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+         System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+         System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
          this.dataGridView1 = new System.Windows.Forms.DataGridView();
          this.label1 = new System.Windows.Forms.Label();
          this.groupBox1 = new System.Windows.Forms.GroupBox();
-         this.button2 = new System.Windows.Forms.Button();
+         this.Export = new System.Windows.Forms.Button();
          this.label7 = new System.Windows.Forms.Label();
          this.label6 = new System.Windows.Forms.Label();
          this.label5 = new System.Windows.Forms.Label();
@@ -64,14 +64,14 @@ namespace FlowModel.AdditionalForms
          this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
          this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
          this.dataGridView1.ColumnHeadersVisible = false;
-         dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-         dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-         dataGridViewCellStyle1.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-         dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-         dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-         dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-         dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-         this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle1;
+         dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+         dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+         dataGridViewCellStyle2.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+         dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+         dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+         dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+         dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+         this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
          this.dataGridView1.Location = new System.Drawing.Point(12, 520);
          this.dataGridView1.Name = "dataGridView1";
          this.dataGridView1.ReadOnly = true;
@@ -92,7 +92,7 @@ namespace FlowModel.AdditionalForms
          // 
          // groupBox1
          // 
-         this.groupBox1.Controls.Add(this.button2);
+         this.groupBox1.Controls.Add(this.Export);
          this.groupBox1.Controls.Add(this.label7);
          this.groupBox1.Controls.Add(this.label6);
          this.groupBox1.Controls.Add(this.label5);
@@ -106,14 +106,15 @@ namespace FlowModel.AdditionalForms
          this.groupBox1.TabStop = false;
          this.groupBox1.Text = "Критериальные показатели объекта:";
          // 
-         // button2
+         // Export
          // 
-         this.button2.Location = new System.Drawing.Point(135, 137);
-         this.button2.Name = "button2";
-         this.button2.Size = new System.Drawing.Size(145, 23);
-         this.button2.TabIndex = 4;
-         this.button2.Text = "Создать отчет";
-         this.button2.UseVisualStyleBackColor = true;
+         this.Export.Location = new System.Drawing.Point(135, 137);
+         this.Export.Name = "Export";
+         this.Export.Size = new System.Drawing.Size(145, 23);
+         this.Export.TabIndex = 4;
+         this.Export.Text = "Создать отчет";
+         this.Export.UseVisualStyleBackColor = true;
+         this.Export.Click += new System.EventHandler(this.Export_Click);
          // 
          // label7
          // 
@@ -171,26 +172,26 @@ namespace FlowModel.AdditionalForms
          // 
          // chart1
          // 
-         chartArea1.Name = "ChartArea1";
-         this.chart1.ChartAreas.Add(chartArea1);
-         legend1.Name = "Legend1";
-         this.chart1.Legends.Add(legend1);
+         chartArea2.Name = "ChartArea1";
+         this.chart1.ChartAreas.Add(chartArea2);
+         legend2.Name = "Legend1";
+         this.chart1.Legends.Add(legend2);
          this.chart1.Location = new System.Drawing.Point(12, 12);
          this.chart1.Name = "chart1";
          this.chart1.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Fire;
-         series1.BorderWidth = 4;
-         series1.ChartArea = "ChartArea1";
-         series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-         series1.Legend = "Legend1";
-         series1.Name = "Температура";
-         series2.BorderWidth = 4;
-         series2.ChartArea = "ChartArea1";
-         series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-         series2.LabelBorderWidth = 2;
-         series2.Legend = "Legend1";
-         series2.Name = "Вязкость";
-         this.chart1.Series.Add(series1);
-         this.chart1.Series.Add(series2);
+         series3.BorderWidth = 4;
+         series3.ChartArea = "ChartArea1";
+         series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+         series3.Legend = "Legend1";
+         series3.Name = "Температура";
+         series4.BorderWidth = 4;
+         series4.ChartArea = "ChartArea1";
+         series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+         series4.LabelBorderWidth = 2;
+         series4.Legend = "Legend1";
+         series4.Name = "Вязкость";
+         this.chart1.Series.Add(series3);
+         this.chart1.Series.Add(series4);
          this.chart1.Size = new System.Drawing.Size(1079, 454);
          this.chart1.TabIndex = 4;
          this.chart1.Text = "chart1";
@@ -311,7 +312,7 @@ namespace FlowModel.AdditionalForms
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button Export;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox X_coordinateBox;

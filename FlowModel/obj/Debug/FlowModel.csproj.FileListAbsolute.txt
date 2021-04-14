@@ -30,3 +30,4 @@ D:\repos\FlowModel\FlowModel\obj\Debug\FlowModel.csproj.GenerateResource.cache
 D:\repos\FlowModel\FlowModel\obj\Debug\FlowModel.csproj.CoreCompileInputs.cache
 D:\repos\FlowModel\FlowModel\obj\Debug\FlowModel.exe
 D:\repos\FlowModel\FlowModel\obj\Debug\FlowModel.pdb
+D:\repos\FlowModel\FlowModel\obj\Debug\FlowModel.csproj.ResolveComReference.cache

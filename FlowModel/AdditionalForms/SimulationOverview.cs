@@ -148,8 +148,36 @@ namespace FlowModel.AdditionalForms
 
       private void button2_Click(object sender, EventArgs e)
       {
+            {
+                Microsoft.Office.Interop.Excel.Application ExcelApp = new Microsoft.Office.Interop.Excel.Application();
+                Workbook ExcelWorkBook;
+                Worksheet ExcelWorkSheet;
+                //Книга.
+                ExcelWorkBook = ExcelApp.Workbooks.Add(System.Reflection.Missing.Value);
+                //Таблица.
+                ExcelWorkSheet = (Microsoft.Office.Interop.Excel.Worksheet)ExcelWorkBook.Worksheets.get_Item(1);
 
-      }
+                ExcelApp.Cells[1, 3] = "Исходные данные";
+                ExcelApp.Cells[3, 1] = "Геометрические параметры канала";
+                ExcelApp.Cells[2, 1] = "Ширина";
+                ExcelApp.Cells[3, 1] = "Глубина";
+                ExcelApp.Cells[4, 1] = "Длина";
+                ExcelApp.Cells[5, 1] = "Тип материала";
+                ExcelApp.Cells[6, 1] = "Плотность";
+                ExcelApp.Cells[7, 1] = "Удельная теплоемкость";
+                ExcelApp.Cells[8, 1] = "Температура плавления";
+                ExcelApp.Cells[9, 1] = "Скорость крышки";
+                ExcelApp.Cells[10, 1] = "Температура крышки";
+                ExcelApp.Cells[11, 1] = "Коэффициент консистенции материала при температуре приведения";
+                ExcelApp.Cells[12, 1] = "Температурный коэффициент вязкости материала";
+                ExcelApp.Cells[13, 1] = "Температура приведения";
+                ExcelApp.Cells[14, 1] = "Индекс течения материала";
+                ExcelApp.Cells[15, 1] = "Коэффициент теплоотдачи от крышки канала к материалу";
+
+                ExcelApp.Visible = true;
+                ExcelApp.UserControl = true;
+            }
+        }
 
       private void chart1_MouseWheel(object sender, MouseEventArgs e)
         {

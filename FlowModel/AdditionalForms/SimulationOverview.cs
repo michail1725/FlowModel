@@ -146,9 +146,12 @@ namespace FlowModel.AdditionalForms
             return str.Length == 2 ? str[1].Length : 0;
         }
 
-        
+      private void button2_Click(object sender, EventArgs e)
+      {
 
-        private void chart1_MouseWheel(object sender, MouseEventArgs e)
+      }
+
+      private void chart1_MouseWheel(object sender, MouseEventArgs e)
         {
             var chart = (Chart)sender;
             var xAxis = chart1.ChartAreas[0].AxisX;

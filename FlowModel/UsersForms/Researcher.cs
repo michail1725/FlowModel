@@ -14,14 +14,17 @@ namespace FlowModel
       {
          InitializeComponent();
          MaterialName.SelectedIndex = 0;
-         dataGridView1.Rows.Add("Плотность", "кг/м3", "1380");
+         dataGridView1.Rows.Add("Плотность", "кг/м^3", "1380");
          dataGridView1.Rows.Add("Удельная теплоемкость", "Дж/(кг·°С)", "2500");
          dataGridView1.Rows.Add("Температура плавления", "°С", "145");
+         dataGridView1.Rows.Add("Эмперические коэффиценты","Единица измерения","Значение");
+            dataGridView1.Rows[dataGridView1.Rows.Count - 2].MinimumHeight = 50;
+            dataGridView1.Rows[dataGridView1.Rows.Count - 2].Cells[2].ReadOnly = true;
          dataGridView1.Rows.Add("Температура приведения", "°С", "165");
          dataGridView1.Rows.Add("Коэффициент консистенции приведения", "Па·с^n", "12000");
          dataGridView1.Rows.Add("Температурный коэффициент вязкости", "1/°С", "0,05");
          dataGridView1.Rows.Add("Индекс течения", "-", "0,28");
-         dataGridView1.Rows.Add("Коэффициент теплоотдачи крышки", "Вт/(м2·°С)", "400");
+         dataGridView1.Rows.Add("Коэффициент теплоотдачи крышки", "Вт/(м^2·°С)", "400");
       }
 
       
@@ -33,18 +36,21 @@ namespace FlowModel
             double val;
             for (int i = 1; i < 8; i++)
             {
-               if (Double.TryParse(dataGridView1[2, i].Value.ToString(), out val))
-               {
-                  double tmp = Convert.ToDouble(dataGridView1[2, i].Value.ToString());
-                  if (tmp < 0)
-                  {
-                     throw new Exception("Вы ввели отрицательное число!\nПроверьте столбец значений на присутствие таковых!");
-                  }
-               }
-               else
-               {
-                  throw new Exception("Вы ввели текст!\nПроверьте столбец значений на присутствие текста!");
-               }
+                    if (i != 3)
+                    {
+                        if (Double.TryParse(dataGridView1[2, i].Value.ToString(), out val))
+                        {
+                            double tmp = Convert.ToDouble(dataGridView1[2, i].Value.ToString());
+                            if (tmp < 0)
+                            {
+                                throw new Exception("Вы ввели отрицательное число!\nПроверьте столбец значений на присутствие таковых!");
+                            }
+                        }
+                        else
+                        {
+                            throw new Exception("Вы ввели текст!\nПроверьте столбец значений на присутствие текста!");
+                        }
+                    }
             }
             StartCalc.Enabled = true;
          }
@@ -55,15 +61,15 @@ namespace FlowModel
          }
 
          SimulationObject.material = new Material();
-         SimulationObject.material.alpha_u = Convert.ToDouble(dataGridView1.Rows[7].Cells[2].Value);
-         SimulationObject.material.b = Convert.ToDouble(dataGridView1.Rows[5].Cells[2].Value);
+         SimulationObject.material.alpha_u = Convert.ToDouble(dataGridView1.Rows[8].Cells[2].Value);
+         SimulationObject.material.b = Convert.ToDouble(dataGridView1.Rows[6].Cells[2].Value);
          SimulationObject.material.c = Convert.ToDouble(dataGridView1.Rows[1].Cells[2].Value);
          SimulationObject.material.material_name = MaterialName.Text;
-         SimulationObject.material.mu0 = Convert.ToDouble(dataGridView1.Rows[4].Cells[2].Value);
-         SimulationObject.material.n = Convert.ToDouble(dataGridView1.Rows[6].Cells[2].Value);
+         SimulationObject.material.mu0 = Convert.ToDouble(dataGridView1.Rows[5].Cells[2].Value);
+         SimulationObject.material.n = Convert.ToDouble(dataGridView1.Rows[7].Cells[2].Value);
          SimulationObject.material.ro = Convert.ToDouble(dataGridView1.Rows[0].Cells[2].Value);
          SimulationObject.material.t0 = Convert.ToDouble(dataGridView1.Rows[2].Cells[2].Value);
-         SimulationObject.material.tr = Convert.ToDouble(dataGridView1.Rows[3].Cells[2].Value);
+         SimulationObject.material.tr = Convert.ToDouble(dataGridView1.Rows[4].Cells[2].Value);
          SimulationObject.canal = new Canal();
          SimulationObject.canal.width = Convert.ToDouble(Width.Text);
          SimulationObject.canal.heiht = Convert.ToDouble(Depth.Text);

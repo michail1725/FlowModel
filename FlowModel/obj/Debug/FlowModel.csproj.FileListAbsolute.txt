@@ -1,7 +1,6 @@
 C:\Users\Михаил\source\repos\FlowModel\FlowModel\bin\Debug\FlowModel.exe.config
 C:\Users\Михаил\source\repos\FlowModel\FlowModel\bin\Debug\FlowModel.exe
 C:\Users\Михаил\source\repos\FlowModel\FlowModel\bin\Debug\FlowModel.pdb
-C:\Users\Михаил\source\repos\FlowModel\FlowModel\obj\Debug\FlowModel.csprojAssemblyReference.cache
 C:\Users\Михаил\source\repos\FlowModel\FlowModel\obj\Debug\FlowModel.AdditionalForms.SimulationOverview.resources
 C:\Users\Михаил\source\repos\FlowModel\FlowModel\obj\Debug\FlowModel.Form1.resources
 C:\Users\Михаил\source\repos\FlowModel\FlowModel\obj\Debug\FlowModel.Properties.Resources.resources
@@ -31,3 +30,4 @@ D:\repos\FlowModel\FlowModel\obj\Debug\FlowModel.csproj.CoreCompileInputs.cache
 D:\repos\FlowModel\FlowModel\obj\Debug\FlowModel.exe
 D:\repos\FlowModel\FlowModel\obj\Debug\FlowModel.pdb
 D:\repos\FlowModel\FlowModel\obj\Debug\FlowModel.csproj.ResolveComReference.cache
+C:\Users\Михаил\source\repos\FlowModel\FlowModel\obj\Debug\FlowModel.csproj.ResolveComReference.cache

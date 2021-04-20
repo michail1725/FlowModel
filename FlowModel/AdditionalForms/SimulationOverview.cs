@@ -34,7 +34,7 @@ namespace FlowModel.AdditionalForms
       {
          chart1.Series[0].Enabled = false;
          chart1.Series[1].Enabled = true;
-         chart1.ChartAreas[0].AxisY.Minimum = eta_ch[eta_ch.Count - 1] - 10;
+         chart1.ChartAreas[0].AxisY.Minimum = eta_ch[eta_ch.Count - 1];
          chart1.ChartAreas[0].AxisY.Maximum = eta_ch[0] + 10;
          label13.Text = "Вязкость";
       }
@@ -43,7 +43,7 @@ namespace FlowModel.AdditionalForms
       {
          chart1.Series[1].Enabled = false;
          chart1.Series[0].Enabled = true;
-         chart1.ChartAreas[0].AxisY.Minimum = t_ch[0] - 10;
+         chart1.ChartAreas[0].AxisY.Minimum = t_ch[0];
          chart1.ChartAreas[0].AxisY.Maximum = t_ch[t_ch.Count - 1] + 10;
          label13.Text = "Температура";
       }
@@ -102,10 +102,11 @@ namespace FlowModel.AdditionalForms
                  (1.0 - Math.Exp(-(z * obj.material.b * q_alpha / (obj.material.ro * obj.material.c * q_ch)))) +
                  Math.Exp(obj.material.b * (obj.material.t0 - obj.material.tr -
                                             (z * q_alpha / (obj.material.ro * obj.material.c * q_ch))));
-            t_ch.Add(Math.Round(obj.material.tr + 1.0 * Math.Log(ae) / obj.material.b, 2));
+                double t_temp1 = obj.material.tr + 1.0 * Math.Log(ae) / obj.material.b;
+            t_ch.Add(Math.Round(t_temp1, 2));
             eta_ch.Add(Math.Round(
                Math.Pow(gamma, obj.material.n - 1) * obj.material.mu0 *
-               Math.Exp(-obj.material.b * (t_ch[t_ch.Count - 1] - obj.material.tr)), 1));
+               Math.Exp(-obj.material.b * (t_temp1 - obj.material.tr)), 1));
             dataGridView1.Columns.Add(t_ch.Count.ToString(), t_ch.Count.ToString());
             dataGridView1.Columns[dataGridView1.Columns.Count - 1].FillWeight = 1;
             dataGridView1.Rows[0].Cells[t_ch.Count].Value = Math.Round(z, GetDecimalDigitsCount(obj.step));
@@ -120,11 +121,12 @@ namespace FlowModel.AdditionalForms
                  -(obj.canal.length * obj.material.b * q_alpha / (obj.material.ro * obj.material.c * q_ch)))) +
               Math.Exp(obj.material.b * (obj.material.t0 - obj.material.tr -
                                          (obj.canal.length * q_alpha / (obj.material.ro * obj.material.c * q_ch))));
-         t_ch.Add(Math.Round(obj.material.tr + 1.0 * Math.Log(ae) / obj.material.b, 2));
-         eta_ch.Add(Math.Round(
-            Math.Pow(gamma, obj.material.n - 1) * obj.material.mu0 *
-            Math.Exp(-obj.material.b * (t_ch[t_ch.Count - 1] - obj.material.tr)), 1));
-         dataGridView1.Columns.Add(t_ch.Count.ToString(), t_ch.Count.ToString());
+            double t_temp = obj.material.tr + 1.0 * Math.Log(ae) / obj.material.b;
+            t_ch.Add(Math.Round(t_temp, 2));
+            eta_ch.Add(Math.Round(
+               Math.Pow(gamma, obj.material.n - 1) * obj.material.mu0 *
+               Math.Exp(-obj.material.b * (t_temp - obj.material.tr)), 1));
+            dataGridView1.Columns.Add(t_ch.Count.ToString(), t_ch.Count.ToString());
          chart1.Series[0].Points.AddXY(obj.canal.length, t_ch[t_ch.Count - 1]);
          chart1.Series[1].Points.AddXY(obj.canal.length, eta_ch[t_ch.Count - 1]);
          dataGridView1.Rows[0].Cells[t_ch.Count].Value = obj.canal.length;
@@ -138,11 +140,11 @@ namespace FlowModel.AdditionalForms
          stopwatch.Stop();
          if (t_ch[0] < eta_ch[eta_ch.Count - 1])
          {
-            chart1.ChartAreas[0].AxisY.Minimum = t_ch[0] - 10;
+            chart1.ChartAreas[0].AxisY.Minimum = t_ch[0];
          }
          else
          {
-            chart1.ChartAreas[0].AxisY.Minimum = eta_ch[eta_ch.Count - 1] - 10;
+            chart1.ChartAreas[0].AxisY.Minimum = eta_ch[eta_ch.Count - 1];
          }
 
          if (t_ch[t_ch.Count - 1] < eta_ch[0])
@@ -157,7 +159,7 @@ namespace FlowModel.AdditionalForms
          label11.Text = stopwatch.ElapsedMilliseconds.ToString() + " мс";
          chart1.Series[0].Enabled = false;
          chart1.Series[1].Enabled = true;
-         chart1.ChartAreas[0].AxisY.Minimum = eta_ch[eta_ch.Count - 1] - 10;
+         chart1.ChartAreas[0].AxisY.Minimum = eta_ch[eta_ch.Count - 1];
          chart1.ChartAreas[0].AxisY.Maximum = eta_ch[0] + 10;
          label13.Text = "Вязкость";
       }
@@ -175,8 +177,9 @@ namespace FlowModel.AdditionalForms
             Microsoft.Office.Interop.Excel.Application ExcelApp = new Microsoft.Office.Interop.Excel.Application();
             Workbook ExcelWorkBook;
             Worksheet ExcelWorkSheet;
-            //Книга.
-            ExcelWorkBook = ExcelApp.Workbooks.Open(@"D:\repos\FlowModel\FlowModel\Sources\templateOfExcelBook.xlsx");
+                //Книга.
+                string pathToFile = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Sources\\templateOfExcelBook.xlsx");
+                ExcelWorkBook = ExcelApp.Workbooks.Open(pathToFile);
             //Таблица.
             ExcelWorkSheet = (Microsoft.Office.Interop.Excel.Worksheet) ExcelWorkBook.Worksheets.get_Item(1);
             ExcelApp.Cells[4, 5] = obj.canal.width;
@@ -198,7 +201,19 @@ namespace FlowModel.AdditionalForms
             ExcelApp.Cells[7, 10] = label5.Text;
             ExcelApp.Cells[8, 10] = label6.Text;
             ExcelApp.Cells[9, 10] = label7.Text;
-
+                int i = 1;
+                int j = 20;
+                foreach(DataGridViewRow row in dataGridView1.Rows)
+                {
+                    foreach (DataGridViewCell cell in row.Cells)
+                    {
+                        ExcelApp.Cells[j, i] = cell.Value;
+                        j += 1;
+                    }
+                    i += 1;
+                    j = 20;
+                }
+                
             ExcelApp.Visible = true;
             ExcelApp.UserControl = true;
          }

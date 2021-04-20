@@ -70,7 +70,7 @@ namespace FlowModel
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Location = new System.Drawing.Point(7, 330);
+            this.groupBox1.Location = new System.Drawing.Point(6, 364);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(317, 69);
             this.groupBox1.TabIndex = 0;
@@ -137,7 +137,7 @@ namespace FlowModel
             this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.Controls.Add(this.CapTemperature);
             this.groupBox2.Controls.Add(this.label6);
-            this.groupBox2.Location = new System.Drawing.Point(6, 405);
+            this.groupBox2.Location = new System.Drawing.Point(5, 439);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(318, 74);
             this.groupBox2.TabIndex = 1;
@@ -146,7 +146,7 @@ namespace FlowModel
             // 
             // CapSpeed
             // 
-            this.CapSpeed.Location = new System.Drawing.Point(157, 37);
+            this.CapSpeed.Location = new System.Drawing.Point(156, 37);
             this.CapSpeed.Name = "CapSpeed";
             this.CapSpeed.Size = new System.Drawing.Size(77, 20);
             this.CapSpeed.TabIndex = 5;
@@ -184,7 +184,7 @@ namespace FlowModel
             // 
             this.groupBox3.Controls.Add(this.label8);
             this.groupBox3.Controls.Add(this.Step);
-            this.groupBox3.Location = new System.Drawing.Point(6, 485);
+            this.groupBox3.Location = new System.Drawing.Point(5, 519);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(318, 72);
             this.groupBox3.TabIndex = 5;
@@ -244,9 +244,9 @@ namespace FlowModel
             this.Properties.AutoSize = true;
             this.Properties.Location = new System.Drawing.Point(7, 52);
             this.Properties.Name = "Properties";
-            this.Properties.Size = new System.Drawing.Size(191, 13);
+            this.Properties.Size = new System.Drawing.Size(272, 26);
             this.Properties.TabIndex = 12;
-            this.Properties.Text = "Полный список свойств материала:";
+            this.Properties.Text = "Полный список свойств материала и эмперических\r\n коэффициентов модели:";
             // 
             // dataGridView1
             // 
@@ -256,10 +256,11 @@ namespace FlowModel
             this.Column1,
             this.Column2,
             this.Column3});
-            this.dataGridView1.Location = new System.Drawing.Point(6, 68);
+            this.dataGridView1.Location = new System.Drawing.Point(6, 89);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.Size = new System.Drawing.Size(318, 256);
+            this.dataGridView1.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.Size = new System.Drawing.Size(318, 269);
             this.dataGridView1.TabIndex = 11;
             // 
             // Column1

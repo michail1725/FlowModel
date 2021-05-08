@@ -23,7 +23,6 @@ D:\repos\FlowModel\FlowModel\bin\Debug\FlowModel.exe
 D:\repos\FlowModel\FlowModel\bin\Debug\FlowModel.pdb
 D:\repos\FlowModel\FlowModel\obj\Debug\FlowModel.csprojAssemblyReference.cache
 D:\repos\FlowModel\FlowModel\obj\Debug\FlowModel.AdditionalForms.SimulationOverview.resources
-D:\repos\FlowModel\FlowModel\obj\Debug\FlowModel.Form1.resources
 D:\repos\FlowModel\FlowModel\obj\Debug\FlowModel.Properties.Resources.resources
 D:\repos\FlowModel\FlowModel\obj\Debug\FlowModel.csproj.GenerateResource.cache
 D:\repos\FlowModel\FlowModel\obj\Debug\FlowModel.csproj.CoreCompileInputs.cache
@@ -31,3 +30,12 @@ D:\repos\FlowModel\FlowModel\obj\Debug\FlowModel.exe
 D:\repos\FlowModel\FlowModel\obj\Debug\FlowModel.pdb
 D:\repos\FlowModel\FlowModel\obj\Debug\FlowModel.csproj.ResolveComReference.cache
 C:\Users\Михаил\source\repos\FlowModel\FlowModel\obj\Debug\FlowModel.csproj.ResolveComReference.cache
+D:\repos\FlowModel\FlowModel\bin\Debug\Microsoft.VisualStudio.Shell.Interop.dll
+D:\repos\FlowModel\FlowModel\bin\Debug\Microsoft.VisualStudio.OLE.Interop.dll
+D:\repos\FlowModel\FlowModel\bin\Debug\EnvDTE.dll
+D:\repos\FlowModel\FlowModel\bin\Debug\Microsoft.VisualStudio.TextManager.Interop.dll
+D:\repos\FlowModel\FlowModel\bin\Debug\stdole.dll
+D:\repos\FlowModel\FlowModel\obj\Debug\FlowModel.AdditionalForms.AdminForm.resources
+D:\repos\FlowModel\FlowModel\obj\Debug\FlowModel.UsersForms.LoginForm.resources
+D:\repos\FlowModel\FlowModel\obj\Debug\FlowModel.csproj.CopyComplete
+D:\repos\FlowModel\FlowModel\obj\Debug\FlowModel.ResearcherForm.resources

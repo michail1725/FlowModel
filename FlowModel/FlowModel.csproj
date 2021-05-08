@@ -79,6 +79,12 @@
     <Compile Include="Objects\Cap.cs" />
     <Compile Include="Objects\Material.cs" />
     <Compile Include="Objects\SimulationObject.cs" />
+    <Compile Include="UsersForms\LoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UsersForms\LoginForm.Designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="UsersForms\Researcher.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -92,6 +98,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UsersForms\AdminForm.resx">
       <DependentUpon>AdminForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UsersForms\LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UsersForms\Researcher.resx">
       <DependentUpon>Researcher.cs</DependentUpon>

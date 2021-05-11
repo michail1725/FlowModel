@@ -31,3 +31,4 @@ D:\repos\FlowModel\FlowModel\obj\Debug\FlowModel.exe
 D:\repos\FlowModel\FlowModel\obj\Debug\FlowModel.pdb
 D:\repos\FlowModel\FlowModel\obj\Debug\FlowModel.csproj.ResolveComReference.cache
 C:\Users\Михаил\source\repos\FlowModel\FlowModel\obj\Debug\FlowModel.csproj.ResolveComReference.cache
+C:\Users\Михаил\source\repos\FlowModel\FlowModel\obj\Debug\FlowModel.csprojAssemblyReference.cache

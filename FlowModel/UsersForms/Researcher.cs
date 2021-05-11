@@ -72,7 +72,7 @@ namespace FlowModel
          SimulationObject.material.tr = Convert.ToDouble(dataGridView1.Rows[4].Cells[2].Value);
          SimulationObject.canal = new Canal();
          SimulationObject.canal.width = Convert.ToDouble(Width.Text);
-         SimulationObject.canal.heiht = Convert.ToDouble(Depth.Text);
+         SimulationObject.canal.height = Convert.ToDouble(Depth.Text);
          SimulationObject.canal.length = Convert.ToDouble(Lenght.Text);
          SimulationObject.canal.cap = new Cap();
          SimulationObject.canal.cap.tu = Convert.ToDouble(CapTemperature.Text);

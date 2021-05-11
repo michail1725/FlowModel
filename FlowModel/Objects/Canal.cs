@@ -9,7 +9,7 @@ namespace FlowModel.Objects
     public class Canal
     {
         public double width{ get; set; }
-        public double heiht { get; set; }
+        public double height { get; set; }
         public double length { get; set; }
         public Cap cap { get; set; }
         

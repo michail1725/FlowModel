@@ -85,7 +85,7 @@ namespace FlowModel.AdditionalForms
 
       private void addMaterial_Click(object sender, EventArgs e)
       {
-         string command = "Insert into Material Values (" + materialId.Text + ", '" + materialName.Text + "');";
+         string command = "Insert into Material (name) Values ('" + materialName.Text + "');";
          requestAnswer(command);
          //openDatabase(command);
          command = "SELECT * FROM Material";

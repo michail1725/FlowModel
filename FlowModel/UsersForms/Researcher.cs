@@ -6,11 +6,11 @@ using FlowModel.Objects;
 
 namespace FlowModel
 {
-   public partial class Form1 : Form
+   public partial class ResearcherForm : Form
    {
 
 
-      public Form1()
+      public ResearcherForm()
       {
          InitializeComponent();
          MaterialName.SelectedIndex = 0;

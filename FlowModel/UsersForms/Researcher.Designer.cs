@@ -84,7 +84,6 @@ namespace FlowModel
          this.Lenght.Size = new System.Drawing.Size(62, 20);
          this.Lenght.TabIndex = 14;
          this.Lenght.Text = "9,5";
-         this.Lenght.TextChanged += new System.EventHandler(this.lenghtChanged);
          // 
          // Depth
          // 
@@ -93,7 +92,6 @@ namespace FlowModel
          this.Depth.Size = new System.Drawing.Size(62, 20);
          this.Depth.TabIndex = 13;
          this.Depth.Text = "0,01";
-         this.Depth.TextChanged += new System.EventHandler(this.depthChanged);
          // 
          // Width
          // 
@@ -102,7 +100,6 @@ namespace FlowModel
          this.Width.Size = new System.Drawing.Size(62, 20);
          this.Width.TabIndex = 12;
          this.Width.Text = "0,25";
-         this.Width.TextChanged += new System.EventHandler(this.widthChanged);
          // 
          // label5
          // 
@@ -151,7 +148,6 @@ namespace FlowModel
          this.CapSpeed.Size = new System.Drawing.Size(77, 20);
          this.CapSpeed.TabIndex = 5;
          this.CapSpeed.Text = "1,5";
-         this.CapSpeed.TextChanged += new System.EventHandler(this.capSpeedChanged);
          // 
          // label7
          // 
@@ -169,7 +165,6 @@ namespace FlowModel
          this.CapTemperature.Size = new System.Drawing.Size(78, 20);
          this.CapTemperature.TabIndex = 3;
          this.CapTemperature.Text = "150";
-         this.CapTemperature.TextChanged += new System.EventHandler(this.capTempChanged);
          // 
          // label6
          // 
@@ -207,7 +202,6 @@ namespace FlowModel
          this.Step.Size = new System.Drawing.Size(78, 20);
          this.Step.TabIndex = 10;
          this.Step.Text = "0,1";
-         this.Step.TextChanged += new System.EventHandler(this.stepChanged);
          // 
          // pictureBox1
          // 
@@ -246,7 +240,7 @@ namespace FlowModel
          this.Properties.Name = "Properties";
          this.Properties.Size = new System.Drawing.Size(272, 26);
          this.Properties.TabIndex = 12;
-         this.Properties.Text = "Полный список свойств материала и эмперических\r\n коэффициентов модели:";
+         this.Properties.Text = "Полный список свойств материала и эмпирических\r\n коэффициентов модели:";
          // 
          // dataGridView1
          // 
@@ -301,12 +295,12 @@ namespace FlowModel
          // MaterialName
          // 
          this.MaterialName.FormattingEnabled = true;
-         this.MaterialName.Items.AddRange(new object[] {
-            "Поливинилхлорид"});
          this.MaterialName.Location = new System.Drawing.Point(6, 28);
          this.MaterialName.Name = "MaterialName";
          this.MaterialName.Size = new System.Drawing.Size(146, 21);
          this.MaterialName.TabIndex = 9;
+         this.MaterialName.SelectedIndexChanged += new System.EventHandler(this.GotMaterial);
+         this.MaterialName.TextChanged += new System.EventHandler(this.GotMaterial);
          // 
          // ResearcherForm
          // 
@@ -329,6 +323,7 @@ namespace FlowModel
          this.Name = "ResearcherForm";
          this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
          this.Text = "FlowModel";
+         this.Load += new System.EventHandler(this.ResearcherForm_Load_1);
          this.groupBox1.ResumeLayout(false);
          this.groupBox1.PerformLayout();
          this.groupBox2.ResumeLayout(false);

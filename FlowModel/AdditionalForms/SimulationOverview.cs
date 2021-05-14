@@ -1,12 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.Office.Interop.Excel;
 
@@ -26,6 +21,8 @@ namespace FlowModel.AdditionalForms
       public SimulationOverview()
       {
          InitializeComponent();
+         chart1.ChartAreas[0].AxisX.LabelStyle.Format = "{0.0}";
+         chart1.ChartAreas[0].AxisY.LabelStyle.Format = "{0.0}";
          Simulation();
          label13.AutoSize = false;
          label13.Paint += VerticalLabel_Paint;
@@ -36,8 +33,8 @@ namespace FlowModel.AdditionalForms
          chart1.Series[0].Enabled = false;
          chart1.Series[1].Enabled = true;
          chart1.ChartAreas[0].AxisY.Minimum = eta_ch[eta_ch.Count - 1];
-         chart1.ChartAreas[0].AxisY.Maximum = eta_ch[0] + 10;
-         label13.Text = "Вязкость";
+         chart1.ChartAreas[0].AxisY.Maximum = eta_ch[0];
+         label13.Text = "Вязкость, Па·с";
       }
 
       private void temp_chart_Click(object sender, EventArgs e)
@@ -45,8 +42,8 @@ namespace FlowModel.AdditionalForms
          chart1.Series[1].Enabled = false;
          chart1.Series[0].Enabled = true;
          chart1.ChartAreas[0].AxisY.Minimum = t_ch[0];
-         chart1.ChartAreas[0].AxisY.Maximum = t_ch[t_ch.Count - 1] + 10;
-         label13.Text = "Температура";
+         chart1.ChartAreas[0].AxisY.Maximum = t_ch[t_ch.Count - 1];
+         label13.Text = "Температура, °С";
       }
 
 
@@ -79,9 +76,9 @@ namespace FlowModel.AdditionalForms
          stopwatch.Start();
          dataGridView1.Columns.Add("param_name", "param_name");
          dataGridView1.Rows.Add(2);
-         dataGridView1.Rows[0].Cells[0].Value = "Координата по длине канала";
-         dataGridView1.Rows[1].Cells[0].Value = "Температура";
-         dataGridView1.Rows[2].Cells[0].Value = "Вязкость";
+         dataGridView1.Rows[0].Cells[0].Value = "Координата по длине канала, м";
+         dataGridView1.Rows[1].Cells[0].Value = "Температура, °С";
+         dataGridView1.Rows[2].Cells[0].Value = "Вязкость, Па·с";
          double gamma, ae, F, q_gamma, q_alpha;
          F = 0.125 * Math.Pow(obj.canal.height / obj.canal.width, 2) - 0.625 * (obj.canal.height / obj.canal.width) + 1.0;
          q_ch = F * obj.canal.width * obj.canal.cap.vu * obj.canal.height / 2.0;
@@ -131,30 +128,31 @@ namespace FlowModel.AdditionalForms
          label6.Text = t_prod.ToString();
          label7.Text = eta_prod.ToString();
          stopwatch.Stop();
-         if (t_ch[0] < eta_ch[eta_ch.Count - 1])
-         {
-            chart1.ChartAreas[0].AxisY.Minimum = t_ch[0];
-         }
-         else
-         {
-            chart1.ChartAreas[0].AxisY.Minimum = eta_ch[eta_ch.Count - 1];
-         }
+         //if (t_ch[0] < eta_ch[eta_ch.Count - 1])
+         //{
+         //   chart1.ChartAreas[0].AxisY.Minimum = t_ch[0];
+         //}
+         //else
+         //{
+         //   chart1.ChartAreas[0].AxisY.Minimum = eta_ch[eta_ch.Count - 1];
+         //}
 
-         if (t_ch[t_ch.Count - 1] < eta_ch[0])
-         {
-            chart1.ChartAreas[0].AxisY.Maximum = eta_ch[0] + 10;
-         }
-         else
-         {
-            chart1.ChartAreas[0].AxisY.Maximum = t_ch[0] + 10;
-         }
+         //if (t_ch[t_ch.Count - 1] < eta_ch[0])
+         //{
+         //   chart1.ChartAreas[0].AxisY.Maximum = eta_ch[0];
+         //}
+         //else
+         //{
+         //   chart1.ChartAreas[0].AxisY.Maximum = t_ch[0];
+         //}
 
          calc_time_label.Text = stopwatch.ElapsedMilliseconds.ToString() + " мс";
          calc_mem_label.Text = Math.Round((Process.GetCurrentProcess().PeakWorkingSet64 / Math.Pow(1024,2)),2).ToString() + " Мб";
          chart1.Series[1].Enabled = true;
+         chart1.Series[0].Enabled = false;
          chart1.ChartAreas[0].AxisY.Minimum = eta_ch[eta_ch.Count - 1];
-         chart1.ChartAreas[0].AxisY.Maximum = eta_ch[0] + 10;
-         label13.Text = "Вязкость";
+         chart1.ChartAreas[0].AxisY.Maximum = eta_ch[0];
+         label13.Text = "Вязкость, Па*с";
       }
 
       static int GetDecimalDigitsCount(double value)

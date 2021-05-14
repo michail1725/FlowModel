@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Data;
+using System.Data.SQLite;
 using System.Drawing;
 using System.Windows.Forms;
 using FlowModel.AdditionalForms;
@@ -8,31 +10,60 @@ namespace FlowModel
 {
    public partial class ResearcherForm : Form
    {
-
+      bool isFine = true;
+      static DataTable table = new DataTable();
+      static DataSet ds = new DataSet();
+      static SQLiteDataAdapter adapter = new SQLiteDataAdapter();
+      private bool IsLoad = false;
 
       public ResearcherForm()
       {
          InitializeComponent();
-         MaterialName.SelectedIndex = 0;
-         dataGridView1.Rows.Add("Плотность", "кг/м^3", "1380");
-         dataGridView1.Rows.Add("Удельная теплоемкость", "Дж/(кг·°С)", "2500");
-         dataGridView1.Rows.Add("Температура плавления", "°С", "145");
-         dataGridView1.Rows.Add("Эмперические коэффиценты","Единица измерения","Значение");
-            dataGridView1.Rows[dataGridView1.Rows.Count - 2].MinimumHeight = 50;
-            dataGridView1.Rows[dataGridView1.Rows.Count - 2].Cells[2].ReadOnly = true;
-         dataGridView1.Rows.Add("Температура приведения", "°С", "165");
-         dataGridView1.Rows.Add("Коэффициент консистенции приведения", "Па·с^n", "12000");
-         dataGridView1.Rows.Add("Температурный коэффициент вязкости", "1/°С", "0,05");
-         dataGridView1.Rows.Add("Индекс течения", "-", "0,28");
-         dataGridView1.Rows.Add("Коэффициент теплоотдачи крышки", "Вт/(м^2·°С)", "400");
+         
       }
 
-      
+      public static DataSet requestAnswer(string cmd)
+      {
+         using (SQLiteConnection Connect = new SQLiteConnection("Data Source = FlowModelDatabase.db"))
+         {
+            Connect.Open();
+            adapter = new SQLiteDataAdapter(cmd, Connect);
+            Connect.Close();
+            ds = new DataSet();
+            adapter.Fill(ds);
+            return ds;
+         }
+      }
+
+      public static DataTable requestAnswer(string cmd, string tmp)
+      {
+         using (SQLiteConnection Connect = new SQLiteConnection("Data Source = FlowModelDatabase.db"))
+         {
+            Connect.Open();
+            adapter = new SQLiteDataAdapter(cmd, Connect);
+            Connect.Close();
+            table = new DataTable();
+            adapter.Fill(table);
+            return table;
+         }
+      }
+
 
       private void StartCalc_Click(object sender, EventArgs e)
       {
+         isFine = true;
          try
          {
+            lenghtChanged();
+            widthChanged();
+            depthChanged();
+            capSpeedChanged();
+            capTempChanged();
+            stepChanged();
+            if (!isFine)
+            {
+               return;
+            }
             double val;
             for (int i = 1; i < 8; i++)
             {
@@ -61,15 +92,15 @@ namespace FlowModel
          }
 
          SimulationObject.material = new Material();
-         SimulationObject.material.alpha_u = Convert.ToDouble(dataGridView1.Rows[8].Cells[2].Value);
-         SimulationObject.material.b = Convert.ToDouble(dataGridView1.Rows[6].Cells[2].Value);
+         SimulationObject.material.alpha_u = Convert.ToDouble(dataGridView1.Rows[7].Cells[2].Value);
+         SimulationObject.material.b = Convert.ToDouble(dataGridView1.Rows[5].Cells[2].Value);
          SimulationObject.material.c = Convert.ToDouble(dataGridView1.Rows[1].Cells[2].Value);
          SimulationObject.material.material_name = MaterialName.Text;
-         SimulationObject.material.mu0 = Convert.ToDouble(dataGridView1.Rows[5].Cells[2].Value);
-         SimulationObject.material.n = Convert.ToDouble(dataGridView1.Rows[7].Cells[2].Value);
+         SimulationObject.material.mu0 = Convert.ToDouble(dataGridView1.Rows[4].Cells[2].Value);
+         SimulationObject.material.n = Convert.ToDouble(dataGridView1.Rows[6].Cells[2].Value);
          SimulationObject.material.ro = Convert.ToDouble(dataGridView1.Rows[0].Cells[2].Value);
          SimulationObject.material.t0 = Convert.ToDouble(dataGridView1.Rows[2].Cells[2].Value);
-         SimulationObject.material.tr = Convert.ToDouble(dataGridView1.Rows[4].Cells[2].Value);
+         SimulationObject.material.tr = Convert.ToDouble(dataGridView1.Rows[3].Cells[2].Value);
          SimulationObject.canal = new Canal();
          SimulationObject.canal.width = Convert.ToDouble(Width.Text);
          SimulationObject.canal.height = Convert.ToDouble(Depth.Text);
@@ -85,7 +116,7 @@ namespace FlowModel
 
       // область проверок данных
 
-      private void widthChanged(object sender, EventArgs e)
+      private void widthChanged()
       {
          try
          {
@@ -104,9 +135,9 @@ namespace FlowModel
 
             double tmp = Convert.ToDouble(Width.Text);
 
-            if (tmp < 0)
+            if (tmp <= 0)
             {
-               throw new Exception("Вы ввели отрицательное число!");
+               throw new Exception("Ширина канала должна быть больше нуля!");
             }
 
             if (tmp > 250)
@@ -117,12 +148,13 @@ namespace FlowModel
          }
          catch (Exception ex)
          {
-            StartCalc.Enabled = false;
+            isFine = false;
+            //StartCalc.Enabled = false;
             Width.BackColor = Color.Red;
             MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
          }
       }
-      private void depthChanged(object sender, EventArgs e)
+      private void depthChanged()
       {
          try
          {
@@ -140,9 +172,9 @@ namespace FlowModel
 
             double tmp = Convert.ToDouble(Depth.Text);
 
-            if (tmp < 0)
+            if (tmp <= 0)
             {
-               throw new Exception("Вы ввели отрицательное число!");
+               throw new Exception("Глубина канала должна быть больше нуля!");
             }
 
             if (tmp > 250)
@@ -153,12 +185,13 @@ namespace FlowModel
          }
          catch (Exception ex)
          {
-            StartCalc.Enabled = false;
+            isFine = false;
+            //StartCalc.Enabled = false;
             Depth.BackColor = Color.Red;
             MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
          }
       }
-      private void lenghtChanged(object sender, EventArgs e)
+      private void lenghtChanged()
       {
          try
          {
@@ -176,9 +209,9 @@ namespace FlowModel
 
             double tmp = Convert.ToDouble(Lenght.Text);
 
-            if (tmp < 0)
+            if (tmp <= 0)
             {
-               throw new Exception("Вы ввели отрицательное число!");
+               throw new Exception("Длина канала должна быть больше нуля!");
             }
 
             if (tmp > 250)
@@ -189,12 +222,13 @@ namespace FlowModel
          }
          catch (Exception ex)
          {
-            StartCalc.Enabled = false;
+            isFine = false;
+            //StartCalc.Enabled = false;
             Lenght.BackColor = Color.Red;
             MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
          }
       }
-      private void capTempChanged(object sender, EventArgs e)
+      private void capTempChanged()
       {
          try
          {
@@ -212,16 +246,16 @@ namespace FlowModel
 
             double tmp = Convert.ToDouble(CapTemperature.Text);
 
-            if (tmp < 0)
+            if (tmp <= 0)
             {
-               throw new Exception("Вы ввели отрицательное число!");
+               throw new Exception("Температура крышки должна быть больше нуля!");
             }
 
             if (tmp < 100)  //пока что не знаю, но стоит сделать сравнение с температурой плавления маетриала конкретного
             {
                throw new Exception("Температура крышки слишком маленькая!");
             }
-            if (tmp > 1500)  
+            if (tmp > 1500)
             {
                throw new Exception("Температура крышки слишком большая!");
             }
@@ -229,12 +263,13 @@ namespace FlowModel
          }
          catch (Exception ex)
          {
-            StartCalc.Enabled = false;
+            isFine = false;
+            //StartCalc.Enabled = false;
             CapTemperature.BackColor = Color.Red;
             MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
          }
       }
-      private void capSpeedChanged(object sender, EventArgs e)
+      private void capSpeedChanged()
       {
          try
          {
@@ -252,26 +287,27 @@ namespace FlowModel
 
             double tmp = Convert.ToDouble(CapSpeed.Text);
 
-            if (tmp < 0)
+            if (tmp <= 0)
             {
-               throw new Exception("Вы ввели отрицательное число!");
+               throw new Exception("Скорость крышки должна быть больше нуля!");
             }
 
             if (tmp < 0.1)
             {
                throw new Exception("Скорость крышки слишком маленькая!");
             }
-        
+
 
          }
          catch (Exception ex)
          {
-            StartCalc.Enabled = false;
+            isFine = false;
+            //StartCalc.Enabled = false;
             CapSpeed.BackColor = Color.Red;
             MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
          }
       }
-      private void stepChanged(object sender, EventArgs e)
+      private void stepChanged()
       {
          try
          {
@@ -289,9 +325,9 @@ namespace FlowModel
 
             double tmp = Convert.ToDouble(Step.Text);
 
-            if (tmp < 0)
+            if (tmp <= 0)
             {
-               throw new Exception("Вы ввели отрицательное число!");
+               throw new Exception("Шаг по длине канала должна быть больше нуля!");
             }
 
             if (tmp > Convert.ToDouble(Lenght.Text))
@@ -303,10 +339,69 @@ namespace FlowModel
          }
          catch (Exception ex)
          {
-            StartCalc.Enabled = false;
+            isFine = false;
+            //StartCalc.Enabled = false;
             Step.BackColor = Color.Red;
             MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
          }
+      }
+
+      private void GotMaterial(object sender, EventArgs e)
+      {
+         if (IsLoad)
+         {
+            try
+            {
+               //dataGridView1.Rows.Clear();
+               string command = $"SELECT idMaterial FROM Material WHere name = '{MaterialName.Text}'";
+               int id_mat = Convert.ToInt32(requestAnswer(command, "1").Rows[0].ItemArray[0]);
+               command =
+                  $"SELECT idMaterial,idProperties,idValue FROM Material_has_properties where idMaterial = {id_mat}";
+               DataTable table1 = requestAnswer(command, "1");
+               for (int i = 0; i < table1.Rows.Count; i++)
+               {
+                  string prop_name;
+                  string value, unit;
+                  command =
+                     $"SELECT PropertiesName, Unit FROM Properties Where idProperties = '{table1.Rows[i].ItemArray[1]}'";
+                  DataTable temp_table = requestAnswer(command, "1");
+                  prop_name = temp_table.Rows[0].ItemArray[0].ToString();
+                  unit = temp_table.Rows[0].ItemArray[1].ToString();
+                  command = $"SELECT Value FROM PropertieValue Where idValue = '{table1.Rows[i].ItemArray[2]}'";
+                  temp_table = requestAnswer(command, "1");
+                  value = temp_table.Rows[0].ItemArray[0].ToString();
+                  dataGridView1.Rows.Add(prop_name, unit, value);
+               }
+            }
+            catch (Exception ex)
+            {
+               MessageBox.Show("Для данного материала отсутствуют свойства!\nОбратитесь к администартору!", "Ошибка",
+                  MessageBoxButtons.OK);
+               
+            }
+         }
+
+         //dataGridView1.Rows.Add("Плотность", "кг/м^3", "1380");
+         //dataGridView1.Rows.Add("Удельная теплоемкость", "Дж/(кг·°С)", "2500");
+         //dataGridView1.Rows.Add("Температура плавления", "°С", "145");
+         //dataGridView1.Rows.Add("Эмперические коэффиценты", "Единица измерения", "Значение");
+         //dataGridView1.Rows[dataGridView1.Rows.Count - 2].MinimumHeight = 50;
+         //dataGridView1.Rows[dataGridView1.Rows.Count - 2].Cells[2].ReadOnly = true;
+         //dataGridView1.Rows.Add("Температура приведения", "°С", "165");
+         //dataGridView1.Rows.Add("Коэффициент консистенции приведения", "Па·с^n", "12000");
+         //dataGridView1.Rows.Add("Температурный коэффициент вязкости", "1/°С", "0,05");
+         //dataGridView1.Rows.Add("Индекс течения", "-", "0,28");
+         //dataGridView1.Rows.Add("Коэффициент теплоотдачи крышки", "Вт/(м^2·°С)", "400");
+      }
+
+      
+
+      private void ResearcherForm_Load_1(object sender, EventArgs e)
+      {
+         string command = "SELECT name FROM Material";
+         MaterialName.DataSource = requestAnswer(command, "1");
+         MaterialName.DisplayMember = "name";
+         IsLoad = true;
       }
    }
 }

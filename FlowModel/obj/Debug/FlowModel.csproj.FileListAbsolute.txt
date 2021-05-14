@@ -39,3 +39,4 @@ D:\repos\FlowModel\FlowModel\obj\Debug\FlowModel.AdditionalForms.AdminForm.resou
 D:\repos\FlowModel\FlowModel\obj\Debug\FlowModel.UsersForms.LoginForm.resources
 D:\repos\FlowModel\FlowModel\obj\Debug\FlowModel.csproj.CopyComplete
 D:\repos\FlowModel\FlowModel\obj\Debug\FlowModel.ResearcherForm.resources
+D:\repos\FlowModel\FlowModel\obj\Debug\FlowModel.AdditionalForms.AddUser.resources

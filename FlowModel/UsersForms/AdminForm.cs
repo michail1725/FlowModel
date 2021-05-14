@@ -1,19 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data.SQLite;
-using System.Drawing.Imaging;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace FlowModel.AdditionalForms
 {
    public partial class AdminForm : Form
    {
+      bool isFine = true;
       static DataTable table = new DataTable();
       static DataSet ds = new DataSet();
       static SQLiteDataAdapter adapter = new SQLiteDataAdapter();
@@ -49,9 +44,32 @@ namespace FlowModel.AdditionalForms
          }
       }
 
+      public void openDatabaseUsers(string cmd)
+      {
+         using (SQLiteConnection Connect = new SQLiteConnection("Data Source = users.db"))
+         {
+            ds = requestAnswerUsers(cmd);
+            dataTable.DataSource = ds.Tables[0];
+            //dataTable.Columns["id"].ReadOnly = true;
+         }
+      }
+
       public static DataSet requestAnswer(string cmd)
       {
          using (SQLiteConnection Connect = new SQLiteConnection("Data Source = FlowModelDatabase.db"))
+         {
+            Connect.Open();
+            adapter = new SQLiteDataAdapter(cmd, Connect);
+            Connect.Close();
+            ds = new DataSet();
+            adapter.Fill(ds);
+            return ds;
+         }
+      }
+
+      public static DataSet requestAnswerUsers(string cmd)
+      {
+         using (SQLiteConnection Connect = new SQLiteConnection("Data Source = users.db"))
          {
             Connect.Open();
             adapter = new SQLiteDataAdapter(cmd, Connect);
@@ -84,8 +102,26 @@ namespace FlowModel.AdditionalForms
             choosenTable = "Properties";
          else if (choosenTable == "Значения")
             choosenTable = "PropertieValue";
-         else
+         else if (choosenTable == "Таблица связи")
             choosenTable = "Material_has_properties";
+         else
+         {
+            try
+            {
+               string command = "SELECT * FROM users";
+               string choosenDB = "users.db";
+               openDatabaseUsers(command);
+            }
+            catch (Exception ex)
+            {
+               MessageBox.Show(ex.Message);
+            }
+
+            choosenTable = "users";
+            return;
+         }
+
+
          try
          {
             string command = SQlrequest.Text;
@@ -106,26 +142,23 @@ namespace FlowModel.AdditionalForms
          //openDatabase(command);
          command = "SELECT * FROM Material";
          openDatabase(command);
+         MessageBox.Show("Запись добавлена!");
       }
 
       private void button1_Click(object sender, EventArgs e)
       {
-         int idMat = Convert.ToInt32(requestAnswer("SELECT idMaterial FROM Material WHERE name = '" + getMaterialName.Text + "'", "1").Rows[0].ItemArray[0]);
          string command = "Insert into Properties (PropertiesName, unit) Values ('" + propertyName.Text +
                           "','" + propertyUnit.Text + "');";
          requestAnswer(command);
          command = "SELECT PropertiesName FROM Properties";
          getPropertyNameForValue.DataSource = requestAnswer(command, "1");
          getPropertyNameForValue.DisplayMember = "PropertiesName";
-         //int idProp = Convert.ToInt32(requestAnswer("SELECT idProperty FROM Properties WHERE name = '" + getMaterialName.Text + "'", "1").Rows[0].ItemArray[0]);
-         //command = "Insert into Material_has_properties (idMaterial, idProperties) values ('" + idMat +"','" +  ;
+         MessageBox.Show("Запись добавлена!");
       }
 
       private void AdminForm_Load(object sender, EventArgs e)
       {
          string command = "SELECT name FROM Material";
-         getMaterialName.DataSource = requestAnswer(command, "1");
-         getMaterialName.DisplayMember = "name";
          getMaterialNameForValue.DataSource = requestAnswer(command, "1");
          getMaterialNameForValue.DisplayMember = "name";
          command = "SELECT PropertiesName FROM Properties";
@@ -135,6 +168,10 @@ namespace FlowModel.AdditionalForms
 
       private void addValue_Click(object sender, EventArgs e)
       {
+         isFine = true;
+         checkValue();
+         if (!isFine)
+            return;
          int idProp = Convert.ToInt32(requestAnswer("SELECT idProperties FROM Properties WHERE PropertiesName = '" + getPropertyNameForValue.Text + "'", "1").Rows[0].ItemArray[0]);
          int idMat = Convert.ToInt32(requestAnswer("SELECT idMaterial FROM Material WHERE name = '" + getMaterialNameForValue.Text + "'", "1").Rows[0].ItemArray[0]);
          string command = "INSERT INTO PropertieValue (value) VALUES ('" + propertyValue.Text +"');";
@@ -145,6 +182,55 @@ namespace FlowModel.AdditionalForms
          int idValue = Convert.ToInt32(requestAnswer("SELECT MAX (idValue) FROM PropertieValue", "1").Rows[0].ItemArray[0]);
          command = "INSERT INTO Material_has_properties values ('" + idMat + "','" + idProp + "','" + idValue + "');";
          requestAnswer(command);
+         MessageBox.Show("Запись добавлена!");
+      }
+
+      private void NewUser_Click(object sender, EventArgs e)
+      {
+        AddUser addUser = new AddUser();
+        addUser.Show();
+      }
+
+      private void checkValue()
+      {
+         try
+         {
+            propertyValue.BackColor = Color.White;
+            double val;
+
+
+            if (Double.TryParse(propertyValue.Text, out val))
+            {
+            }
+            else
+            {
+               throw new Exception("Вы ввели текст!\nПрограмный комплекс принимает только числа!");
+            }
+
+            double tmp = Convert.ToDouble(propertyValue.Text);
+
+            if (tmp <= 0)
+            {
+               throw new Exception("Температура крышки должна быть больше нуля!");
+            }
+
+            if (tmp < 100)  //пока что не знаю, но стоит сделать сравнение с температурой плавления маетриала конкретного
+            {
+               throw new Exception("Температура крышки слишком маленькая!");
+            }
+            if (tmp > 1500)
+            {
+               throw new Exception("Температура крышки слишком большая!");
+            }
+
+         }
+         catch (Exception ex)
+         {
+            isFine = false;
+            //StartCalc.Enabled = false;
+            propertyValue.BackColor = Color.Red;
+            MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+         }
       }
    }
 }

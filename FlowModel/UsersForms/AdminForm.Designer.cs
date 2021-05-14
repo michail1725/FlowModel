@@ -39,8 +39,6 @@
          this.materialName = new System.Windows.Forms.TextBox();
          this.label3 = new System.Windows.Forms.Label();
          this.groupBox2 = new System.Windows.Forms.GroupBox();
-         this.label8 = new System.Windows.Forms.Label();
-         this.getMaterialName = new System.Windows.Forms.ComboBox();
          this.button1 = new System.Windows.Forms.Button();
          this.propertyUnit = new System.Windows.Forms.TextBox();
          this.label5 = new System.Windows.Forms.Label();
@@ -54,6 +52,7 @@
          this.getPropertyNameForValue = new System.Windows.Forms.ComboBox();
          this.label6 = new System.Windows.Forms.Label();
          this.getMaterialNameForValue = new System.Windows.Forms.ComboBox();
+         this.NewUser = new System.Windows.Forms.Button();
          ((System.ComponentModel.ISupportInitialize)(this.dataTable)).BeginInit();
          this.groupBox1.SuspendLayout();
          this.groupBox2.SuspendLayout();
@@ -102,7 +101,8 @@
             "Материалы",
             "Свойства",
             "Значения",
-            "Таблица связи"});
+            "Таблица связи",
+            "Пользователи"});
          this.currentTable.Location = new System.Drawing.Point(12, 73);
          this.currentTable.Name = "currentTable";
          this.currentTable.Size = new System.Drawing.Size(136, 21);
@@ -160,8 +160,6 @@
          // 
          // groupBox2
          // 
-         this.groupBox2.Controls.Add(this.label8);
-         this.groupBox2.Controls.Add(this.getMaterialName);
          this.groupBox2.Controls.Add(this.button1);
          this.groupBox2.Controls.Add(this.propertyUnit);
          this.groupBox2.Controls.Add(this.label5);
@@ -170,31 +168,14 @@
          this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
          this.groupBox2.Location = new System.Drawing.Point(584, 187);
          this.groupBox2.Name = "groupBox2";
-         this.groupBox2.Size = new System.Drawing.Size(361, 139);
+         this.groupBox2.Size = new System.Drawing.Size(361, 83);
          this.groupBox2.TabIndex = 7;
          this.groupBox2.TabStop = false;
          this.groupBox2.Text = "Добавить свойства материала";
          // 
-         // label8
-         // 
-         this.label8.AutoSize = true;
-         this.label8.Location = new System.Drawing.Point(9, 78);
-         this.label8.Name = "label8";
-         this.label8.Size = new System.Drawing.Size(149, 16);
-         this.label8.TabIndex = 19;
-         this.label8.Text = "Название материала";
-         // 
-         // getMaterialName
-         // 
-         this.getMaterialName.FormattingEnabled = true;
-         this.getMaterialName.Location = new System.Drawing.Point(12, 97);
-         this.getMaterialName.Name = "getMaterialName";
-         this.getMaterialName.Size = new System.Drawing.Size(146, 24);
-         this.getMaterialName.TabIndex = 18;
-         // 
          // button1
          // 
-         this.button1.Location = new System.Drawing.Point(267, 97);
+         this.button1.Location = new System.Drawing.Point(267, 47);
          this.button1.Name = "button1";
          this.button1.Size = new System.Drawing.Size(88, 23);
          this.button1.TabIndex = 15;
@@ -254,7 +235,7 @@
          this.groupBox3.Controls.Add(this.getMaterialNameForValue);
          this.groupBox3.Controls.Add(this.addValue);
          this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-         this.groupBox3.Location = new System.Drawing.Point(584, 332);
+         this.groupBox3.Location = new System.Drawing.Point(584, 276);
          this.groupBox3.Name = "groupBox3";
          this.groupBox3.Size = new System.Drawing.Size(361, 135);
          this.groupBox3.TabIndex = 8;
@@ -311,12 +292,23 @@
          this.getMaterialNameForValue.Size = new System.Drawing.Size(146, 24);
          this.getMaterialNameForValue.TabIndex = 16;
          // 
+         // NewUser
+         // 
+         this.NewUser.Location = new System.Drawing.Point(758, 28);
+         this.NewUser.Name = "NewUser";
+         this.NewUser.Size = new System.Drawing.Size(187, 23);
+         this.NewUser.TabIndex = 9;
+         this.NewUser.Text = "Добавить нового пользователя";
+         this.NewUser.UseVisualStyleBackColor = true;
+         this.NewUser.Click += new System.EventHandler(this.NewUser_Click);
+         // 
          // AdminForm
          // 
          this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
          this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
          this.BackColor = System.Drawing.Color.LightBlue;
          this.ClientSize = new System.Drawing.Size(982, 535);
+         this.Controls.Add(this.NewUser);
          this.Controls.Add(this.groupBox3);
          this.Controls.Add(this.groupBox2);
          this.Controls.Add(this.groupBox1);
@@ -362,8 +354,6 @@
       private System.Windows.Forms.Label label5;
       private System.Windows.Forms.TextBox propertyName;
       private System.Windows.Forms.Label label4;
-      private System.Windows.Forms.Label label8;
-      private System.Windows.Forms.ComboBox getMaterialName;
       private System.Windows.Forms.Button addValue;
       private System.Windows.Forms.GroupBox groupBox3;
       private System.Windows.Forms.TextBox propertyValue;
@@ -372,5 +362,6 @@
       private System.Windows.Forms.ComboBox getPropertyNameForValue;
       private System.Windows.Forms.Label label6;
       private System.Windows.Forms.ComboBox getMaterialNameForValue;
+      private System.Windows.Forms.Button NewUser;
    }
 }

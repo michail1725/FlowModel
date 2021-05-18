@@ -72,23 +72,24 @@ namespace FlowModel
                 //{
                 //    if (i != 3)
                 //    {
-                //        if (Double.TryParse(dataGridView1[2, i].Value.ToString(), out val))
-                //        {
-                //            double tmp = Convert.ToDouble(dataGridView1[2, i].Value.ToString());
-                //            if (tmp < 0)
-                //            {
-                //                throw new Exception("Вы ввели отрицательное число!\nПроверьте столбец значений на присутствие таковых!");
-                //            }
-                //        }
-                //        else
-                //        {
-                //            throw new Exception("Вы ввели текст!\nПроверьте столбец значений на присутствие текста!");
-                //        }
+                //        
                 //    }
                 //}
                 foreach (DataGridViewRow row in dataGridView1.Rows) {
-                    if (row.Cells[0].Value != null) {
-                        props.Add(row.Cells[0].Value.ToString(), Convert.ToDouble(row.Cells[2].Value));
+                    if (row.Cells[2].Value != null && row.Cells[2].Value.ToString() != "Значение") {
+                        if (Double.TryParse(row.Cells[2].Value.ToString(), out val))
+                            {
+                                double tmp = Convert.ToDouble(row.Cells[2].Value.ToString());
+                                if (tmp < 0)
+                                {
+                                    throw new Exception("Вы ввели отрицательное число!\nПроверьте столбец значений на присутствие таковых!");
+                                }
+                                }
+                                else
+                                {
+                                    throw new Exception("Вы ввели текст!\nПроверьте столбец значений на присутствие текста!");
+                                }
+                            props.Add(row.Cells[0].Value.ToString(), Convert.ToDouble(row.Cells[2].Value));
                     }
                 }
                 StartCalc.Enabled = true;
@@ -375,19 +376,41 @@ namespace FlowModel
                command =
                   $"SELECT idMaterial,idProperties,Value FROM Material_has_properties where idMaterial = {id_mat}";
                DataTable table1 = requestAnswer(command, "1");
-               for (int i = 0; i < table1.Rows.Count; i++)
+               command =
+                $"SELECT idProperties, PropertiesName, Unit FROM Properties Where idProperties IN (SELECT idProperties FROM Material_has_properties where idMaterial = {id_mat}) AND Type = 'Свойство материала'";
+               DataTable temp_table = requestAnswer(command, "1");
+               for (int i = 0; i < temp_table.Rows.Count; i++) {
+                   string prop_name;
+                   string value = "0", unit;
+                   prop_name = temp_table.Rows[i].ItemArray[1].ToString();
+                   unit = temp_table.Rows[i].ItemArray[2].ToString();
+                   for (int j = 0; j < table1.Rows.Count; j++) {
+                       if (table1.Rows[j].ItemArray[1].ToString() == temp_table.Rows[i].ItemArray[0].ToString()) {
+                           value = table1.Rows[j].ItemArray[2].ToString();
+                       }
+                   }
+                   dataGridView1.Rows.Add(prop_name, unit, value);
+               }
+               dataGridView1.Rows.Add("Эмперические коэффиценты", "Единица измерения", "Значение");
+               dataGridView1.Rows[dataGridView1.Rows.Count - 2].MinimumHeight = 50;
+               dataGridView1.Rows[dataGridView1.Rows.Count - 2].Cells[2].ReadOnly = true;
+                    command =
+                $"SELECT idProperties,PropertiesName, Unit FROM Properties Where idProperties IN (SELECT idProperties FROM Material_has_properties where idMaterial = {id_mat}) AND Type = 'Эмпирический коэффициент'";
+               temp_table = requestAnswer(command, "1");
+               for (int i = 0; i < temp_table.Rows.Count; i++)
                {
-                  string prop_name;
-                  string value, unit;
-                  command =
-                     $"SELECT PropertiesName, Unit FROM Properties Where idProperties = '{table1.Rows[i].ItemArray[1]}'";
-                  DataTable temp_table = requestAnswer(command, "1");
-                  prop_name = temp_table.Rows[0].ItemArray[0].ToString();
-                  unit = temp_table.Rows[0].ItemArray[1].ToString();
-                  //command = $"SELECT Value FROM Material_has_value Where idValue = '{table1.Rows[i].ItemArray[2]}'";
-                  //temp_table = requestAnswer(command, "1");
-                  value = table1.Rows[i].ItemArray[2].ToString();
-                  dataGridView1.Rows.Add(prop_name, unit, value);
+                   string prop_name;
+                   string value = "0", unit;
+                   prop_name = temp_table.Rows[i].ItemArray[1].ToString();
+                   unit = temp_table.Rows[i].ItemArray[2].ToString();
+                   for (int j = 0; j < table1.Rows.Count; j++)
+                   {
+                        if (table1.Rows[j].ItemArray[1].ToString() == temp_table.Rows[i].ItemArray[0].ToString())
+                       {
+                           value = table1.Rows[j].ItemArray[2].ToString();
+                       }
+                   }
+                   dataGridView1.Rows.Add(prop_name, unit, value);
                }
             }
             catch (Exception ex)

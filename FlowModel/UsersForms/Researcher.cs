@@ -5,115 +5,130 @@ using System.Drawing;
 using System.Windows.Forms;
 using FlowModel.AdditionalForms;
 using FlowModel.Objects;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace FlowModel
 {
-   public partial class ResearcherForm : Form
-   {
-      bool isFine = true;
-      static DataTable table = new DataTable();
-      static DataSet ds = new DataSet();
-      static SQLiteDataAdapter adapter = new SQLiteDataAdapter();
-      private bool IsLoad = false;
+    public partial class ResearcherForm : Form
+    {
+        bool isFine = true;
+        static DataTable table = new DataTable();
+        static DataSet ds = new DataSet();
+        static SQLiteDataAdapter adapter = new SQLiteDataAdapter();
+        delegate bool IsEqual(string x);
+        private bool IsLoad = false;
+        Dictionary<string, double> props;
+        public ResearcherForm()
+        {
+            InitializeComponent();
+        }
 
-      public ResearcherForm()
-      {
-         InitializeComponent();
-      }
-
-      public static DataSet requestAnswer(string cmd)
-      {
-         using (SQLiteConnection Connect = new SQLiteConnection("Data Source = FlowModelDatabase.db"))
-         {
-            Connect.Open();
-            adapter = new SQLiteDataAdapter(cmd, Connect);
-            Connect.Close();
-            ds = new DataSet();
-            adapter.Fill(ds);
-            return ds;
-         }
-      }
-
-      public static DataTable requestAnswer(string cmd, string tmp)
-      {
-         using (SQLiteConnection Connect = new SQLiteConnection("Data Source = FlowModelDatabase.db"))
-         {
-            Connect.Open();
-            adapter = new SQLiteDataAdapter(cmd, Connect);
-            Connect.Close();
-            table = new DataTable();
-            adapter.Fill(table);
-            return table;
-         }
-      }
-
-
-      private void StartCalc_Click(object sender, EventArgs e)
-      {
-         isFine = true;
-         try
-         {
-            lenghtChanged();
-            widthChanged();
-            depthChanged();
-            capSpeedChanged();
-            capTempChanged();
-            stepChanged();
-            if (!isFine)
+        public static DataSet requestAnswer(string cmd)
+        {
+            using (SQLiteConnection Connect = new SQLiteConnection("Data Source = FlowModelDatabase.db"))
             {
-               return;
+                Connect.Open();
+                adapter = new SQLiteDataAdapter(cmd, Connect);
+                Connect.Close();
+                ds = new DataSet();
+                adapter.Fill(ds);
+                return ds;
             }
-            double val;
+        }
 
-            for (int i = 1; i < 8; i++)
+        public static DataTable requestAnswer(string cmd, string tmp)
+        {
+            using (SQLiteConnection Connect = new SQLiteConnection("Data Source = FlowModelDatabase.db"))
             {
-                    if (i != 3)
-                    {
-                        if (Double.TryParse(dataGridView1[2, i].Value.ToString(), out val))
-                        {
-                            double tmp = Convert.ToDouble(dataGridView1[2, i].Value.ToString());
-                            if (tmp < 0)
-                            {
-                                throw new Exception("Вы ввели отрицательное число!\nПроверьте столбец значений на присутствие таковых!");
-                            }
-                        }
-                        else
-                        {
-                            throw new Exception("Вы ввели текст!\nПроверьте столбец значений на присутствие текста!");
-                        }
+                Connect.Open();
+                adapter = new SQLiteDataAdapter(cmd, Connect);
+                Connect.Close();
+                table = new DataTable();
+                adapter.Fill(table);
+                return table;
+            }
+        }
+
+
+        private void StartCalc_Click(object sender, EventArgs e)
+        {
+            isFine = true;
+            try
+            {
+                lenghtChanged();
+                widthChanged();
+                depthChanged();
+                capSpeedChanged();
+                capTempChanged();
+                stepChanged();
+                if (!isFine)
+                {
+                    return;
+                }
+                double val;
+
+                //for (int i = 1; i < 8; i++)
+                //{
+                //    if (i != 3)
+                //    {
+                //        if (Double.TryParse(dataGridView1[2, i].Value.ToString(), out val))
+                //        {
+                //            double tmp = Convert.ToDouble(dataGridView1[2, i].Value.ToString());
+                //            if (tmp < 0)
+                //            {
+                //                throw new Exception("Вы ввели отрицательное число!\nПроверьте столбец значений на присутствие таковых!");
+                //            }
+                //        }
+                //        else
+                //        {
+                //            throw new Exception("Вы ввели текст!\nПроверьте столбец значений на присутствие текста!");
+                //        }
+                //    }
+                //}
+                foreach (DataGridViewRow row in dataGridView1.Rows) {
+                    if (row.Cells[0].Value != null) {
+                        props.Add(row.Cells[0].Value.ToString(), Convert.ToDouble(row.Cells[2].Value));
                     }
+                }
+                StartCalc.Enabled = true;
             }
-            StartCalc.Enabled = true;
-         }
-         catch (Exception ex)
-         {
-            MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            return;
-         }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
-         SimulationObject.material = new Material();
-         SimulationObject.material.alpha_u = Convert.ToDouble(dataGridView1.Rows[7].Cells[2].Value);
-         SimulationObject.material.b = Convert.ToDouble(dataGridView1.Rows[5].Cells[2].Value);
-         SimulationObject.material.c = Convert.ToDouble(dataGridView1.Rows[1].Cells[2].Value);
-         SimulationObject.material.material_name = MaterialName.Text;
-         SimulationObject.material.mu0 = Convert.ToDouble(dataGridView1.Rows[4].Cells[2].Value);
-         SimulationObject.material.n = Convert.ToDouble(dataGridView1.Rows[6].Cells[2].Value);
-         SimulationObject.material.ro = Convert.ToDouble(dataGridView1.Rows[0].Cells[2].Value);
-         SimulationObject.material.t0 = Convert.ToDouble(dataGridView1.Rows[2].Cells[2].Value);
-         SimulationObject.material.tr = Convert.ToDouble(dataGridView1.Rows[3].Cells[2].Value);
-         SimulationObject.canal = new Canal();
-         SimulationObject.canal.width = Convert.ToDouble(Width.Text);
-         SimulationObject.canal.height = Convert.ToDouble(Depth.Text);
-         SimulationObject.canal.length = Convert.ToDouble(Lenght.Text);
-         SimulationObject.canal.cap = new Cap();
-         SimulationObject.canal.cap.tu = Convert.ToDouble(CapTemperature.Text);
-         SimulationObject.canal.cap.vu = Convert.ToDouble(CapSpeed.Text);
-         SimulationObject.step = Convert.ToDouble(Step.Text);
-         SimulationOverview simulationOverview = new SimulationOverview();
-         simulationOverview.ShowDialog();
-      }
+            SimulationObject.material = new Material();
+            SimulationObject.material.alpha_u = ThisProp(x => x == "Коэффициент теплоотдачи крышки");
+            SimulationObject.material.b = ThisProp(x => x == "Температурный коэффициент вязкости");
+            SimulationObject.material.c = ThisProp(x => x == "Удельная теплоемкость");
+            SimulationObject.material.material_name = MaterialName.Text;
+            SimulationObject.material.mu0 = ThisProp(x => x == "Коэффициент консистенции приведения");
+            SimulationObject.material.n = ThisProp(x => x == "Индекс течения");
+            SimulationObject.material.ro = ThisProp(x => x == "Плотность");
+            SimulationObject.material.t0 = ThisProp(x => x == "Температура плавления");
+            SimulationObject.material.tr = ThisProp(x => x == "Температура приведения");
+            SimulationObject.canal = new Canal();
+            SimulationObject.canal.width = Convert.ToDouble(Width.Text);
+            SimulationObject.canal.height = Convert.ToDouble(Depth.Text);
+            SimulationObject.canal.length = Convert.ToDouble(Lenght.Text);
+            SimulationObject.canal.cap = new Cap();
+            SimulationObject.canal.cap.tu = Convert.ToDouble(CapTemperature.Text);
+            SimulationObject.canal.cap.vu = Convert.ToDouble(CapSpeed.Text);
+            SimulationObject.step = Convert.ToDouble(Step.Text);
+            SimulationOverview simulationOverview = new SimulationOverview();
+            simulationOverview.ShowDialog();
+        }
 
-
+        double ThisProp(IsEqual func){
+            foreach (var prop in props) {
+                if (func(prop.Key)) {
+                    return prop.Value;
+                }
+            }
+            return 0;
+        }
       // область проверок данных
 
       private void widthChanged()
@@ -353,6 +368,7 @@ namespace FlowModel
             dataGridView1.Rows.Clear();
             try
             {
+                props = new Dictionary<string,double>();
                //dataGridView1.Rows.Clear();
                string command = $"SELECT idMaterial FROM Material WHere name = '{MaterialName.Text}'";
                int id_mat = Convert.ToInt32(requestAnswer(command, "1").Rows[0].ItemArray[0]);

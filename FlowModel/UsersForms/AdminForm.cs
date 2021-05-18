@@ -107,7 +107,6 @@ namespace FlowModel.AdditionalForms
             try
             {
                string command = "SELECT * FROM users";
-               string choosenDB = "users.db";
                openDatabaseUsers(command);
             }
             catch (Exception ex)

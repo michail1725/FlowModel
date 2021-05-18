@@ -100,8 +100,6 @@ namespace FlowModel.AdditionalForms
             choosenTable = "Material";
          else if (choosenTable == "Свойства")
             choosenTable = "Properties";
-         else if (choosenTable == "Значения")
-            choosenTable = "PropertieValue";
          else if (choosenTable == "Таблица связи")
             choosenTable = "Material_has_properties";
          else
@@ -170,17 +168,19 @@ namespace FlowModel.AdditionalForms
       {
          isFine = true;
          checkValue();
+         propertyValue.Text = propertyValue.Text.Replace(",", ".");
          if (!isFine)
             return;
          int idProp = Convert.ToInt32(requestAnswer("SELECT idProperties FROM Properties WHERE PropertiesName = '" + getPropertyNameForValue.Text + "'", "1").Rows[0].ItemArray[0]);
          int idMat = Convert.ToInt32(requestAnswer("SELECT idMaterial FROM Material WHERE name = '" + getMaterialNameForValue.Text + "'", "1").Rows[0].ItemArray[0]);
-         string command = "INSERT INTO PropertieValue (value) VALUES ('" + propertyValue.Text +"');";
-         requestAnswer(command);
-         command = "SELECT PropertiesName FROM Properties";
+         //string command = "INSERT INTO PropertieValue (value) VALUES ('" + propertyValue.Text +"');";
+         //requestAnswer(command);
+         string command = "SELECT PropertiesName FROM Properties";
          getPropertyNameForValue.DataSource = requestAnswer(command, "1");
          getPropertyNameForValue.DisplayMember = "PropertiesName";
-         int idValue = Convert.ToInt32(requestAnswer("SELECT MAX (idValue) FROM PropertieValue", "1").Rows[0].ItemArray[0]);
-         command = "INSERT INTO Material_has_properties values ('" + idMat + "','" + idProp + "','" + idValue + "');";
+         //int idValue = Convert.ToInt32(requestAnswer("SELECT MAX (idValue) FROM PropertieValue", "1").Rows[0].ItemArray[0]);
+         string Value = propertyValue.Text;
+         command = "INSERT INTO Material_has_properties values ('" + idMat + "','" + idProp + "','" + Value + "');";
          requestAnswer(command);
          MessageBox.Show("Запись добавлена!");
       }
@@ -195,6 +195,7 @@ namespace FlowModel.AdditionalForms
       {
          try
          {
+            
             propertyValue.BackColor = Color.White;
             double val;
 
@@ -211,16 +212,13 @@ namespace FlowModel.AdditionalForms
 
             if (tmp <= 0)
             {
-               throw new Exception("Температура крышки должна быть больше нуля!");
+               throw new Exception("Значение должно быть больше нуля!");
             }
 
-            if (tmp < 100)  //пока что не знаю, но стоит сделать сравнение с температурой плавления маетриала конкретного
+            
+            if (tmp > 20000)
             {
-               throw new Exception("Температура крышки слишком маленькая!");
-            }
-            if (tmp > 1500)
-            {
-               throw new Exception("Температура крышки слишком большая!");
+               throw new Exception("Значение слишком большое!");
             }
 
          }

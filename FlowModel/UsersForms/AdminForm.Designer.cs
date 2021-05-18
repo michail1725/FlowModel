@@ -100,7 +100,6 @@
          this.currentTable.Items.AddRange(new object[] {
             "Материалы",
             "Свойства",
-            "Значения",
             "Таблица связи",
             "Пользователи"});
          this.currentTable.Location = new System.Drawing.Point(12, 73);

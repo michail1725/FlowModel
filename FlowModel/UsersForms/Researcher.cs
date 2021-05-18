@@ -19,7 +19,6 @@ namespace FlowModel
       public ResearcherForm()
       {
          InitializeComponent();
-         
       }
 
       public static DataSet requestAnswer(string cmd)
@@ -65,6 +64,7 @@ namespace FlowModel
                return;
             }
             double val;
+
             for (int i = 1; i < 8; i++)
             {
                     if (i != 3)
@@ -350,13 +350,14 @@ namespace FlowModel
       {
          if (IsLoad)
          {
+            dataGridView1.Rows.Clear();
             try
             {
                //dataGridView1.Rows.Clear();
                string command = $"SELECT idMaterial FROM Material WHere name = '{MaterialName.Text}'";
                int id_mat = Convert.ToInt32(requestAnswer(command, "1").Rows[0].ItemArray[0]);
                command =
-                  $"SELECT idMaterial,idProperties,idValue FROM Material_has_properties where idMaterial = {id_mat}";
+                  $"SELECT idMaterial,idProperties,Value FROM Material_has_properties where idMaterial = {id_mat}";
                DataTable table1 = requestAnswer(command, "1");
                for (int i = 0; i < table1.Rows.Count; i++)
                {
@@ -367,9 +368,9 @@ namespace FlowModel
                   DataTable temp_table = requestAnswer(command, "1");
                   prop_name = temp_table.Rows[0].ItemArray[0].ToString();
                   unit = temp_table.Rows[0].ItemArray[1].ToString();
-                  command = $"SELECT Value FROM PropertieValue Where idValue = '{table1.Rows[i].ItemArray[2]}'";
-                  temp_table = requestAnswer(command, "1");
-                  value = temp_table.Rows[0].ItemArray[0].ToString();
+                  //command = $"SELECT Value FROM Material_has_value Where idValue = '{table1.Rows[i].ItemArray[2]}'";
+                  //temp_table = requestAnswer(command, "1");
+                  value = table1.Rows[i].ItemArray[2].ToString();
                   dataGridView1.Rows.Add(prop_name, unit, value);
                }
             }

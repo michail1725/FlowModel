@@ -75,23 +75,28 @@ namespace FlowModel
                 //        
                 //    }
                 //}
-                foreach (DataGridViewRow row in dataGridView1.Rows) {
-                    if (row.Cells[2].Value != null && row.Cells[2].Value.ToString() != "Значение") {
-                        if (Double.TryParse(row.Cells[2].Value.ToString(), out val))
-                            {
-                                double tmp = Convert.ToDouble(row.Cells[2].Value.ToString());
-                                if (tmp < 0)
-                                {
-                                    throw new Exception("Вы ввели отрицательное число!\nПроверьте столбец значений на присутствие таковых!");
-                                }
-                                }
-                                else
-                                {
-                                    throw new Exception("Вы ввели текст!\nПроверьте столбец значений на присутствие текста!");
-                                }
-                            props.Add(row.Cells[0].Value.ToString(), Convert.ToDouble(row.Cells[2].Value));
-                    }
+                foreach (DataGridViewRow row in dataGridView1.Rows)
+                {
+                   if (row.Cells[2].Value != null && row.Cells[2].Value.ToString() != "Значение")
+                   {
+                      if (Double.TryParse(row.Cells[2].Value.ToString(), out val))
+                      {
+                         double tmp = Convert.ToDouble(row.Cells[2].Value.ToString());
+                         if (tmp < 0)
+                         {
+                            throw new Exception(
+                               "Вы ввели отрицательное число!\nПроверьте столбец значений на присутствие таковых!");
+                         }
+                      }
+                      else
+                      {
+                         throw new Exception("Вы ввели текст!\nПроверьте столбец значений на присутствие текста!");
+                      }
+
+                      props.Add(row.Cells[0].Value.ToString(), Convert.ToDouble(row.Cells[2].Value));
+                   }
                 }
+
                 StartCalc.Enabled = true;
             }
             catch (Exception ex)

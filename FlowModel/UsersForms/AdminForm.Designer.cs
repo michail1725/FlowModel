@@ -53,6 +53,8 @@
          this.label6 = new System.Windows.Forms.Label();
          this.getMaterialNameForValue = new System.Windows.Forms.ComboBox();
          this.NewUser = new System.Windows.Forms.Button();
+         this.label8 = new System.Windows.Forms.Label();
+         this.propertyType = new System.Windows.Forms.ComboBox();
          ((System.ComponentModel.ISupportInitialize)(this.dataTable)).BeginInit();
          this.groupBox1.SuspendLayout();
          this.groupBox2.SuspendLayout();
@@ -159,6 +161,8 @@
          // 
          // groupBox2
          // 
+         this.groupBox2.Controls.Add(this.label8);
+         this.groupBox2.Controls.Add(this.propertyType);
          this.groupBox2.Controls.Add(this.button1);
          this.groupBox2.Controls.Add(this.propertyUnit);
          this.groupBox2.Controls.Add(this.label5);
@@ -167,14 +171,14 @@
          this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
          this.groupBox2.Location = new System.Drawing.Point(584, 187);
          this.groupBox2.Name = "groupBox2";
-         this.groupBox2.Size = new System.Drawing.Size(361, 83);
+         this.groupBox2.Size = new System.Drawing.Size(361, 131);
          this.groupBox2.TabIndex = 7;
          this.groupBox2.TabStop = false;
          this.groupBox2.Text = "Добавить свойства материала";
          // 
          // button1
          // 
-         this.button1.Location = new System.Drawing.Point(267, 47);
+         this.button1.Location = new System.Drawing.Point(267, 95);
          this.button1.Name = "button1";
          this.button1.Size = new System.Drawing.Size(88, 23);
          this.button1.TabIndex = 15;
@@ -234,7 +238,7 @@
          this.groupBox3.Controls.Add(this.getMaterialNameForValue);
          this.groupBox3.Controls.Add(this.addValue);
          this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-         this.groupBox3.Location = new System.Drawing.Point(584, 276);
+         this.groupBox3.Location = new System.Drawing.Point(584, 324);
          this.groupBox3.Name = "groupBox3";
          this.groupBox3.Size = new System.Drawing.Size(361, 135);
          this.groupBox3.TabIndex = 8;
@@ -268,6 +272,7 @@
          // 
          // getPropertyNameForValue
          // 
+         this.getPropertyNameForValue.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
          this.getPropertyNameForValue.FormattingEnabled = true;
          this.getPropertyNameForValue.Location = new System.Drawing.Point(9, 96);
          this.getPropertyNameForValue.Name = "getPropertyNameForValue";
@@ -300,6 +305,27 @@
          this.NewUser.Text = "Добавить нового пользователя";
          this.NewUser.UseVisualStyleBackColor = true;
          this.NewUser.Click += new System.EventHandler(this.NewUser_Click);
+         // 
+         // label8
+         // 
+         this.label8.AutoSize = true;
+         this.label8.Location = new System.Drawing.Point(6, 76);
+         this.label8.Name = "label8";
+         this.label8.Size = new System.Drawing.Size(97, 16);
+         this.label8.TabIndex = 21;
+         this.label8.Text = "Тип свойства";
+         // 
+         // propertyType
+         // 
+         this.propertyType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+         this.propertyType.FormattingEnabled = true;
+         this.propertyType.Items.AddRange(new object[] {
+            "Свойство материала",
+            "Эмпирический коэффициент"});
+         this.propertyType.Location = new System.Drawing.Point(9, 95);
+         this.propertyType.Name = "propertyType";
+         this.propertyType.Size = new System.Drawing.Size(146, 24);
+         this.propertyType.TabIndex = 20;
          // 
          // AdminForm
          // 
@@ -362,5 +388,7 @@
       private System.Windows.Forms.Label label6;
       private System.Windows.Forms.ComboBox getMaterialNameForValue;
       private System.Windows.Forms.Button NewUser;
+      private System.Windows.Forms.Label label8;
+      private System.Windows.Forms.ComboBox propertyType;
    }
 }

@@ -144,8 +144,8 @@ namespace FlowModel.AdditionalForms
 
       private void button1_Click(object sender, EventArgs e)
       {
-         string command = "Insert into Properties (PropertiesName, unit) Values ('" + propertyName.Text +
-                          "','" + propertyUnit.Text + "');";
+         string command = "Insert into Properties (PropertiesName, unit, type) Values ('" + propertyName.Text +
+                          "','" + propertyUnit.Text + "','"+propertyType.Text +"');";
          requestAnswer(command);
          command = "SELECT PropertiesName FROM Properties";
          getPropertyNameForValue.DataSource = requestAnswer(command, "1");

@@ -39,6 +39,7 @@
          // 
          // UserRole
          // 
+         this.UserRole.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
          this.UserRole.FormattingEnabled = true;
          this.UserRole.Items.AddRange(new object[] {
             "Администратор",
@@ -119,6 +120,7 @@
          this.Controls.Add(this.Password);
          this.Controls.Add(this.label3);
          this.Controls.Add(this.label2);
+         this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
          this.MaximizeBox = false;
          this.Name = "AddUser";
          this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

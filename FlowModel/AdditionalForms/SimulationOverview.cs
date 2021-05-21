@@ -32,8 +32,16 @@ namespace FlowModel.AdditionalForms
       {
          chart1.Series[0].Enabled = false;
          chart1.Series[1].Enabled = true;
-         chart1.ChartAreas[0].AxisY.Minimum = eta_ch[eta_ch.Count - 1];
-         chart1.ChartAreas[0].AxisY.Maximum = eta_ch[0];
+         if (eta_ch[eta_ch.Count - 1] > eta_ch[0])
+         {
+            chart1.ChartAreas[0].AxisY.Minimum = eta_ch[0];
+            chart1.ChartAreas[0].AxisY.Maximum = eta_ch[eta_ch.Count - 1];
+         }
+         else
+         {
+            chart1.ChartAreas[0].AxisY.Minimum = eta_ch[eta_ch.Count - 1];
+            chart1.ChartAreas[0].AxisY.Maximum = eta_ch[0];
+         }
          label13.Text = "Вязкость, Па·с";
       }
 
@@ -41,8 +49,16 @@ namespace FlowModel.AdditionalForms
       {
          chart1.Series[1].Enabled = false;
          chart1.Series[0].Enabled = true;
-         chart1.ChartAreas[0].AxisY.Minimum = t_ch[0];
-         chart1.ChartAreas[0].AxisY.Maximum = t_ch[t_ch.Count - 1];
+         if (t_ch[t_ch.Count - 1] > t_ch[0])
+         {
+            chart1.ChartAreas[0].AxisY.Minimum = t_ch[0];
+            chart1.ChartAreas[0].AxisY.Maximum = t_ch[t_ch.Count - 1];
+         }
+         else
+         {
+            chart1.ChartAreas[0].AxisY.Minimum = t_ch[t_ch.Count - 1];
+            chart1.ChartAreas[0].AxisY.Maximum = t_ch[0];
+         }
          label13.Text = "Температура, °С";
       }
 
@@ -150,8 +166,17 @@ namespace FlowModel.AdditionalForms
          calc_mem_label.Text = Math.Round((Process.GetCurrentProcess().PeakWorkingSet64 / Math.Pow(1024,2)),2).ToString() + " Мб";
          chart1.Series[1].Enabled = true;
          chart1.Series[0].Enabled = false;
-         chart1.ChartAreas[0].AxisY.Minimum = eta_ch[eta_ch.Count - 1];
-         chart1.ChartAreas[0].AxisY.Maximum = eta_ch[0];
+         if (eta_ch[eta_ch.Count - 1] > eta_ch[0])
+         {
+            chart1.ChartAreas[0].AxisY.Minimum = eta_ch[0];
+            chart1.ChartAreas[0].AxisY.Maximum = eta_ch[eta_ch.Count - 1];
+         }
+         else
+         {
+            chart1.ChartAreas[0].AxisY.Minimum = eta_ch[eta_ch.Count - 1];
+            chart1.ChartAreas[0].AxisY.Maximum = eta_ch[0];
+         }
+
          label13.Text = "Вязкость, Па*с";
       }
 
@@ -162,9 +187,12 @@ namespace FlowModel.AdditionalForms
          return str.Length == 2 ? str[1].Length : 0;
       }
 
-     
+      private void SimulationOverview_Load(object sender, EventArgs e)
+      {
 
-        private void GetReport_Click(object sender, EventArgs e)
+      }
+
+      private void GetReport_Click(object sender, EventArgs e)
       {
          
             Microsoft.Office.Interop.Excel.Application ExcelApp = new Microsoft.Office.Interop.Excel.Application();

@@ -334,6 +334,7 @@ namespace FlowModel.AdditionalForms
          this.Name = "SimulationOverview";
          this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
          this.Text = "SimulationOverview";
+         this.Load += new System.EventHandler(this.SimulationOverview_Load);
          ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
          this.groupBox1.ResumeLayout(false);
          this.groupBox1.PerformLayout();

@@ -39,6 +39,8 @@
          this.materialName = new System.Windows.Forms.TextBox();
          this.label3 = new System.Windows.Forms.Label();
          this.groupBox2 = new System.Windows.Forms.GroupBox();
+         this.label8 = new System.Windows.Forms.Label();
+         this.propertyType = new System.Windows.Forms.ComboBox();
          this.button1 = new System.Windows.Forms.Button();
          this.propertyUnit = new System.Windows.Forms.TextBox();
          this.label5 = new System.Windows.Forms.Label();
@@ -53,8 +55,6 @@
          this.label6 = new System.Windows.Forms.Label();
          this.getMaterialNameForValue = new System.Windows.Forms.ComboBox();
          this.NewUser = new System.Windows.Forms.Button();
-         this.label8 = new System.Windows.Forms.Label();
-         this.propertyType = new System.Windows.Forms.ComboBox();
          ((System.ComponentModel.ISupportInitialize)(this.dataTable)).BeginInit();
          this.groupBox1.SuspendLayout();
          this.groupBox2.SuspendLayout();
@@ -176,6 +176,27 @@
          this.groupBox2.TabStop = false;
          this.groupBox2.Text = "Добавить свойства материала";
          // 
+         // label8
+         // 
+         this.label8.AutoSize = true;
+         this.label8.Location = new System.Drawing.Point(6, 76);
+         this.label8.Name = "label8";
+         this.label8.Size = new System.Drawing.Size(97, 16);
+         this.label8.TabIndex = 21;
+         this.label8.Text = "Тип свойства";
+         // 
+         // propertyType
+         // 
+         this.propertyType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+         this.propertyType.FormattingEnabled = true;
+         this.propertyType.Items.AddRange(new object[] {
+            "Свойство материала",
+            "Эмпирический коэффициент"});
+         this.propertyType.Location = new System.Drawing.Point(9, 95);
+         this.propertyType.Name = "propertyType";
+         this.propertyType.Size = new System.Drawing.Size(146, 24);
+         this.propertyType.TabIndex = 20;
+         // 
          // button1
          // 
          this.button1.Location = new System.Drawing.Point(267, 95);
@@ -290,6 +311,7 @@
          // 
          // getMaterialNameForValue
          // 
+         this.getMaterialNameForValue.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
          this.getMaterialNameForValue.FormattingEnabled = true;
          this.getMaterialNameForValue.Location = new System.Drawing.Point(9, 47);
          this.getMaterialNameForValue.Name = "getMaterialNameForValue";
@@ -305,27 +327,6 @@
          this.NewUser.Text = "Добавить нового пользователя";
          this.NewUser.UseVisualStyleBackColor = true;
          this.NewUser.Click += new System.EventHandler(this.NewUser_Click);
-         // 
-         // label8
-         // 
-         this.label8.AutoSize = true;
-         this.label8.Location = new System.Drawing.Point(6, 76);
-         this.label8.Name = "label8";
-         this.label8.Size = new System.Drawing.Size(97, 16);
-         this.label8.TabIndex = 21;
-         this.label8.Text = "Тип свойства";
-         // 
-         // propertyType
-         // 
-         this.propertyType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-         this.propertyType.FormattingEnabled = true;
-         this.propertyType.Items.AddRange(new object[] {
-            "Свойство материала",
-            "Эмпирический коэффициент"});
-         this.propertyType.Location = new System.Drawing.Point(9, 95);
-         this.propertyType.Name = "propertyType";
-         this.propertyType.Size = new System.Drawing.Size(146, 24);
-         this.propertyType.TabIndex = 20;
          // 
          // AdminForm
          // 

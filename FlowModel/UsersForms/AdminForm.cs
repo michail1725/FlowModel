@@ -25,8 +25,8 @@ namespace FlowModel.AdditionalForms
          {
             string command = SQlrequest.Text;
             requestAnswer(command);
-            command = "SELECT * FROM "+ choosenTable; //нужна текущая таблица 
-            openDatabase(command);
+            //command = "SELECT * FROM "+ choosenTable; //нужна текущая таблица 
+            //openDatabase(command);
          }
          catch (Exception ex)
          {

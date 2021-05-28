@@ -12,7 +12,6 @@ E:\Git\Repos\FlowModel\FlowModel\bin\Debug\FlowModel.exe
 E:\Git\Repos\FlowModel\FlowModel\bin\Debug\FlowModel.pdb
 E:\Git\Repos\FlowModel\FlowModel\obj\Debug\FlowModel.csprojAssemblyReference.cache
 E:\Git\Repos\FlowModel\FlowModel\obj\Debug\FlowModel.AdditionalForms.SimulationOverview.resources
-E:\Git\Repos\FlowModel\FlowModel\obj\Debug\FlowModel.Form1.resources
 E:\Git\Repos\FlowModel\FlowModel\obj\Debug\FlowModel.Properties.Resources.resources
 E:\Git\Repos\FlowModel\FlowModel\obj\Debug\FlowModel.csproj.GenerateResource.cache
 E:\Git\Repos\FlowModel\FlowModel\obj\Debug\FlowModel.exe
@@ -50,3 +49,14 @@ C:\Users\Михаил\source\repos\FlowModel\FlowModel\obj\Debug\FlowModel.Addit
 C:\Users\Михаил\source\repos\FlowModel\FlowModel\obj\Debug\FlowModel.UsersForms.LoginForm.resources
 C:\Users\Михаил\source\repos\FlowModel\FlowModel\obj\Debug\FlowModel.ResearcherForm.resources
 C:\Users\Михаил\source\repos\FlowModel\FlowModel\obj\Debug\FlowModel.csproj.CopyComplete
+E:\Git\Repos\FlowModel\FlowModel\bin\Debug\Microsoft.VisualStudio.Shell.Interop.dll
+E:\Git\Repos\FlowModel\FlowModel\bin\Debug\Microsoft.VisualStudio.OLE.Interop.dll
+E:\Git\Repos\FlowModel\FlowModel\bin\Debug\EnvDTE.dll
+E:\Git\Repos\FlowModel\FlowModel\bin\Debug\Microsoft.VisualStudio.TextManager.Interop.dll
+E:\Git\Repos\FlowModel\FlowModel\bin\Debug\stdole.dll
+E:\Git\Repos\FlowModel\FlowModel\obj\Debug\FlowModel.csproj.ResolveComReference.cache
+E:\Git\Repos\FlowModel\FlowModel\obj\Debug\FlowModel.AdditionalForms.AddUser.resources
+E:\Git\Repos\FlowModel\FlowModel\obj\Debug\FlowModel.AdditionalForms.AdminForm.resources
+E:\Git\Repos\FlowModel\FlowModel\obj\Debug\FlowModel.UsersForms.LoginForm.resources
+E:\Git\Repos\FlowModel\FlowModel\obj\Debug\FlowModel.ResearcherForm.resources
+E:\Git\Repos\FlowModel\FlowModel\obj\Debug\FlowModel.csproj.CopyComplete

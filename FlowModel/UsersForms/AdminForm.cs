@@ -2,6 +2,7 @@
 using System.Data;
 using System.Data.SQLite;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 
 namespace FlowModel.AdditionalForms
@@ -229,5 +230,19 @@ namespace FlowModel.AdditionalForms
             MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
          }
       }
-   }
+
+        private void DB_backup_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog dialog = new FolderBrowserDialog();
+            DialogResult result = dialog.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                string filePath = dialog.SelectedPath + "\\" + "FlowModelDatabase.db";
+                File.Copy("FlowModelDatabase.db", filePath,true);
+                filePath = dialog.SelectedPath + "\\" + "users.db";
+                File.Copy("users.db", filePath,true);
+                MessageBox.Show("Резервное копирование произведено");
+            }
+        }
+    }
 }

@@ -68,14 +68,15 @@ namespace FlowModel
                 }
                 double val;
 
-                //for (int i = 1; i < 8; i++)
-                //{
-                //    if (i != 3)
-                //    {
-                //        
-                //    }
-                //}
-                foreach (DataGridViewRow row in dataGridView1.Rows)
+            //for (int i = 1; i < 8; i++)
+            //{
+            //    if (i != 3)
+            //    {
+            //        
+            //    }
+            //}
+            props = new Dictionary<string, double>();
+            foreach (DataGridViewRow row in dataGridView1.Rows)
                 {
                    if (row.Cells[2].Value != null && row.Cells[2].Value.ToString() != "Значение")
                    {
@@ -371,6 +372,7 @@ namespace FlowModel
       {
          if (IsLoad)
          {
+            
             dataGridView1.Rows.Clear();
             try
             {
@@ -417,6 +419,7 @@ namespace FlowModel
                    }
                    dataGridView1.Rows.Add(prop_name, unit, value);
                }
+               StartCalc.Enabled = true;
             }
             catch (Exception ex)
             {

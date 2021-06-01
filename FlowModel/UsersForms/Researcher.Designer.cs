@@ -225,6 +225,7 @@ namespace FlowModel
          // 
          // StartCalc
          // 
+         this.StartCalc.Enabled = false;
          this.StartCalc.Location = new System.Drawing.Point(840, 611);
          this.StartCalc.Name = "StartCalc";
          this.StartCalc.Size = new System.Drawing.Size(165, 34);

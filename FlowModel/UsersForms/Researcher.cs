@@ -152,7 +152,7 @@ namespace FlowModel
             }
             else
             {
-               throw new Exception("Вы ввели текст!\nПрограмный комплекс принимает только числа!");
+               throw new Exception("Вы ввели текст!\nПрограммный комплекс принимает только числа!");
             }
 
             double tmp = Convert.ToDouble(Width.Text);
@@ -189,7 +189,7 @@ namespace FlowModel
             }
             else
             {
-               throw new Exception("Вы ввели текст!\nПрограмный комплекс принимает только числа!");
+               throw new Exception("Вы ввели текст!\nПрограммный комплекс принимает только числа!");
             }
 
             double tmp = Convert.ToDouble(Depth.Text);
@@ -226,7 +226,7 @@ namespace FlowModel
             }
             else
             {
-               throw new Exception("Вы ввели текст!\nПрограмный комплекс принимает только числа!");
+               throw new Exception("Вы ввели текст!\nПрограммный комплекс принимает только числа!");
             }
 
             double tmp = Convert.ToDouble(Lenght.Text);
@@ -263,7 +263,7 @@ namespace FlowModel
             }
             else
             {
-               throw new Exception("Вы ввели текст!\nПрограмный комплекс принимает только числа!");
+               throw new Exception("Вы ввели текст!\nПрограммный комплекс принимает только числа!");
             }
 
             double tmp = Convert.ToDouble(CapTemperature.Text);
@@ -342,7 +342,7 @@ namespace FlowModel
             }
             else
             {
-               throw new Exception("Вы ввели текст!\nПрограмный комплекс принимает только числа!");
+               throw new Exception("Вы ввели текст!\nПрограммный комплекс принимает только числа!");
             }
 
             double tmp = Convert.ToDouble(Step.Text);
@@ -423,7 +423,7 @@ namespace FlowModel
             }
             catch (Exception ex)
             {
-               MessageBox.Show("Для данного материала отсутствуют свойства!\nОбратитесь к администартору!", "Ошибка",
+               MessageBox.Show("Для данного материала отсутствуют свойства!\nОбратитесь к администратору!", "Ошибка",
                   MessageBoxButtons.OK);
                
             }
